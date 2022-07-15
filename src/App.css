@@ -37,3 +37,8 @@
     transform: translateY(0px);
   }
 }
+
+body {
+  background-color: #2b2b2b;
+  color: #cfcfcfcf;
+}
