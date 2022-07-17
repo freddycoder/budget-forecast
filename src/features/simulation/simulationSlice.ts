@@ -7,7 +7,6 @@ export interface SimulationState {
   cashDownPercentage: number
   interestRate: number
   term: number
-  paymentFrequency: "mountly" | "bi-monthly" | "two-week" | "hebdomadaly"
   paymentAmount: number,
   paymentTable: Array<PaymentInfo>
 }
@@ -26,7 +25,6 @@ const initialState: SimulationState = {
   cashDownPercentage: 0,
   interestRate: 0,
   term: 0,
-  paymentFrequency: "mountly",
   paymentAmount: 0,
   paymentTable: []
 };
@@ -42,7 +40,7 @@ const updatePaymentAmout = (state: SimulationState) => {
 
   let interest = interestRate * balance;
 
-  const num = ((state.costOfProperty * tauxHypothecaire) / 12);
+  const num = ((balance * tauxHypothecaire) / 12);
   const den = 1 - Math.pow(1 + tauxHypothecaire / 12, - totalNumberOfPayment);
   state.paymentAmount = num / den   
   
