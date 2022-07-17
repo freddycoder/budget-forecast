@@ -36,12 +36,15 @@ const updatePaymentAmout = (state: SimulationState) => {
 
   let balance = state.costOfProperty - state.cashDown;
   
-  const interestRate = state.interestRate / 100 / 12;
+  const tauxHypothecaire = state.interestRate / 100;
+  const interestRate = tauxHypothecaire / 12;
   const totalNumberOfPayment = 12 * state.term;
 
   let interest = interestRate * balance;
 
-  state.paymentAmount = interest + balance / totalNumberOfPayment;
+  const num = ((state.costOfProperty * tauxHypothecaire) / 12);
+  const den = 1 - Math.pow(1 + tauxHypothecaire / 12, - totalNumberOfPayment);
+  state.paymentAmount = num / den   
   
   for (var i = 0; i < totalNumberOfPayment; i++) {
     if (i > 0) {
