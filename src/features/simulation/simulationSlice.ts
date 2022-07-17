@@ -8,7 +8,16 @@ export interface SimulationState {
   interestRate: number
   term: number
   paymentFrequency: "mountly" | "bi-monthly" | "two-week" | "hebdomadaly"
+  paymentAmount: number,
+  paymentTable: Array<PaymentInfo>
+}
+
+interface PaymentInfo {
+  payment: number
   paymentAmount: number
+  interest: number
+  principal: number
+  balance: number
 }
 
 const initialState: SimulationState = {
@@ -19,14 +28,42 @@ const initialState: SimulationState = {
   term: 0,
   paymentFrequency: "mountly",
   paymentAmount: 0,
+  paymentTable: []
 };
 
-const compoundInterest = (state: SimulationState) => {
-  return (state.costOfProperty - state.cashDown) * (1 + state.interestRate / 100) ** state.term;
-}
-
 const updatePaymentAmout = (state: SimulationState) => {
-  return ((state.costOfProperty - state.cashDown) / state.term / 12) + compoundInterest(state);
+  state.paymentTable = [];
+
+  let balance = state.costOfProperty - state.cashDown;
+  
+  const interestRate = state.interestRate / 100 / 12;
+  const totalNumberOfPayment = 12 * state.term;
+
+  let interest = interestRate * balance;
+
+  state.paymentAmount = interest + balance / totalNumberOfPayment;
+  
+  for (var i = 0; i < totalNumberOfPayment; i++) {
+    if (i > 0) {
+      balance = state.paymentTable[i - 1].balance;
+    }
+
+    interest = interestRate * balance;
+
+    state.paymentTable.push({
+      payment: i + 1,
+      interest: interest,
+      principal: state.paymentAmount - interest,
+      balance: balance - state.paymentAmount + interest,
+      paymentAmount: state.paymentAmount
+    })
+
+    if (state.paymentTable[i].balance <= 0) {
+      break;
+    }
+  }
+
+  return state.paymentAmount
 }
 
 export const simulationSlice = createSlice({

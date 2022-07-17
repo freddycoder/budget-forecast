@@ -7,8 +7,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Simulation />
+        <div>
+          <ul>
+            <li><a href="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/MC-CH-fra.aspx">Calculatrice hypothécaire Canada</a></li>
+          </ul>
+        </div>
       </header>
+      <section>
+        <Simulation />
+      </section>
     </div>
   );
 }
