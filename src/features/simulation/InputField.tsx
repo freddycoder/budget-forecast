@@ -5,6 +5,7 @@ interface InputFieldProps {
     value: string | number
     onChange: React.InputHTMLAttributes<HTMLInputElement>['onChange']
     ariaLabel: string | undefined
+    disabled?: boolean
 }
 
 export const InputField = (props: InputFieldProps) => {
@@ -16,6 +17,7 @@ export const InputField = (props: InputFieldProps) => {
                 aria-label={props.ariaLabel}
                 value={props.value}
                 onChange={props.onChange}
+                disabled={props.disabled}
             />
         </div>
     )

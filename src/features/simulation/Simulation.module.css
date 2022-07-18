@@ -1,18 +1,28 @@
 .box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   font-size: calc(10px + 2vmin);
   border: 1px solid #cfcfcfcf;
   border-radius: 5px;
   padding: 1em;
 }
 
+.box div {
+  width: 100%;
+}
+
+.box input {
+  float: right;
+}
+
+.box span {
+  margin-right: 0.25em;
+}
+
 .row {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .row > button {
