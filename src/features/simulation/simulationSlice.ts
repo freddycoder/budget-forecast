@@ -1,25 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { SimulationState } from './type/SimulationState';
 
-export interface SimulationState {
-  costOfProperty: number
-  cashDown: number
-  cashDownPercentage: number
-  interestRate: number
-  term: number
-  paymentAmount: number,
-  paymentTable: Array<PaymentInfo>
-}
+const infoInLocalstorage = localStorage.getItem('simulation');
 
-interface PaymentInfo {
-  payment: number
-  paymentAmount: number
-  interest: number
-  principal: number
-  balance: number
-}
-
-const initialState: SimulationState = {
+let initialState: SimulationState = {
   costOfProperty: 0,
   cashDown: 0,
   cashDownPercentage: 0,
@@ -28,6 +13,10 @@ const initialState: SimulationState = {
   paymentAmount: 0,
   paymentTable: []
 };
+
+if (infoInLocalstorage) {
+  initialState = JSON.parse(infoInLocalstorage);
+}
 
 const updatePaymentAmout = (state: SimulationState) => {
   state.paymentTable = [];

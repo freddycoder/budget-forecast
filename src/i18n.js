@@ -9,7 +9,6 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: 'fr',
     backend: {
       loadPath: '/assets/i18n/{{ns}}/{{lng}}.json'
     },
