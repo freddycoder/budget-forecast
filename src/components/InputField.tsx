@@ -1,4 +1,4 @@
-import styles from './Simulation.module.css';
+import styles from './InputField.module.css';
 
 interface InputFieldProps {
     label: string

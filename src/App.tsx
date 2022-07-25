@@ -1,31 +1,32 @@
-import { Simulation } from './features/simulation/Simulation';
+import { Simulation } from './features/mortgage/Simulation';
 import './App.css';
-import { LiHref } from './components/LiHref.component';
-import LangSelector from './features/languages/LangSelector';
-import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Income } from './features/income/Income';
+import { Outcome } from './features/outcome/Outcome';
+import { RenderSimulation } from './features/finalSimulation/RenderSimulation';
+import { NavBar } from './NavBar';
 
 function App() {
-  const { t } = useTranslation();
-
   return (
     <div className="App">
       <header className="App-header">
-        <div>
-          <ul>
-            <LiHref 
-              href="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/MC-CH-fra.aspx" 
-              text={t("CalculatriceHypothecaireCanada")}></LiHref>
-            <LiHref 
-              href="http://www.calculconversion.com/calcul-pret-hypothecaire.html#:~:text=Formule%20du%20pr%C3%AAt%20hypoth%C3%A9caire%20Le%20versement%20mensuel%20%3D,l%27ann%C3%A9e%29-Nombre%20de%20versements%20%2A%20Nombre%20d%27ann%C3%A9es%20du%20terme" 
-              text={t("CommentCalculerPret")}></LiHref>
-            <li>
-              <LangSelector></LangSelector>
-            </li>
-          </ul>
-        </div>
+        <NavBar></NavBar>
       </header>
+
       <main className="App-main">
-        <Simulation />
+        <article>
+          <section>
+            <Router>
+              <Routes>
+                <Route path="/" element={<Simulation></Simulation>} />
+                <Route path="/hypotheque" element={<Simulation></Simulation>} />
+                <Route path="/revenue" element={<Income></Income>} />
+                <Route path="/depense" element={<Outcome></Outcome>} />
+                <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
+              </Routes>
+            </Router>
+          </section>
+        </article>
       </main>
     </div>
   );

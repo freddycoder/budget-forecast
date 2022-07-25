@@ -1,6 +1,6 @@
 import styles from './Simulation.module.css';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { InputField } from './InputField';
+import { InputField } from '../../components/InputField';
 import {
   setCostOfProperty,
   selectSimulation,
