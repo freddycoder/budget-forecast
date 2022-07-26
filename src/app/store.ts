@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import simulationSlice from '../features/mortgage/simulationSlice';
+import simulationSlice from '../features/simulationSlice';
 import { localStorageMiddleware } from './middlewares/localStorageMiddleware';
 
 export const store = configureStore({

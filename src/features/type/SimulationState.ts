@@ -1,6 +1,8 @@
 import { PaymentInfo } from "./PaiementInfo"
+import { SimulationStep } from "./SimulationStep"
 
 export interface SimulationState {
+  // Mortgage information
   costOfProperty: number
   cashDown: number
   cashDownPercentage: number
@@ -8,4 +10,14 @@ export interface SimulationState {
   term: number
   paymentAmount: number,
   paymentTable: Array<PaymentInfo>
+
+  // income information
+  initialValue: number
+  income: number
+
+  // expenses information
+  expenses: number
+
+  // final information
+  simulationTable: Array<SimulationStep>
 }

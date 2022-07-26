@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
+import { RootState } from '../app/store';
 import { SimulationState } from './type/SimulationState';
+import { SimulationStep } from './type/SimulationStep';
 
 const infoInLocalstorage = localStorage.getItem('simulation');
 
@@ -11,11 +12,30 @@ let initialState: SimulationState = {
   interestRate: 0,
   term: 0,
   paymentAmount: 0,
-  paymentTable: []
+  paymentTable: [],
+
+  initialValue: 0,
+  income: 0,
+  expenses: 0,
+  simulationTable: []
 };
 
 if (infoInLocalstorage) {
   initialState = JSON.parse(infoInLocalstorage);
+
+  if (initialState.initialValue == undefined) {
+    initialState.initialValue = 0;
+  }
+  if (initialState.income == undefined) {
+    initialState.income = 0;
+  }
+  if (initialState.expenses == undefined) {
+    initialState.expenses = 0;
+  }
+  if (initialState.simulationTable == undefined) {
+    initialState.simulationTable = [];
+  }
+  initialState.simulationTable = generateSimulation(initialState);
 }
 
 const updatePaymentAmout = (state: SimulationState) => {
@@ -56,6 +76,40 @@ const updatePaymentAmout = (state: SimulationState) => {
   return state.paymentAmount
 }
 
+function generateSimulation(state: SimulationState): SimulationStep[] {
+  const simulationTable: SimulationStep[] = [];
+  const nbMount = 300;
+
+  for (let i = 0; i < nbMount; i++) {
+    let previousValue = 0;
+    if (i == 0) {
+      previousValue = state.initialValue;
+    }
+    else {
+      previousValue = simulationTable[i - 1].solde;
+    }
+
+    let mortgagePayment = 0;
+    if (state.paymentTable.length > i) {
+      mortgagePayment = state.paymentTable[i].paymentAmount;
+    }
+
+    const diff = state.income - state.expenses - mortgagePayment
+
+    simulationTable.push({
+       mount: i + 1,
+       income: state.income,
+       expenses: state.expenses,
+       mortgagePayment: mortgagePayment,
+       diff: diff,
+       solde: previousValue + diff
+    })
+  }
+
+  return simulationTable;
+}
+
+
 export const simulationSlice = createSlice({
   name: 'simulator',
   initialState,
@@ -63,24 +117,41 @@ export const simulationSlice = createSlice({
     setCostOfProperty: (state: SimulationState, action: PayloadAction<number>) => {
       state.costOfProperty = action.payload;
       state.paymentAmount = updatePaymentAmout(state);
+      state.simulationTable = generateSimulation(state)
     },
     setCashdown: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDown = action.payload;
       state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
       state.paymentAmount = updatePaymentAmout(state);
+      state.simulationTable = generateSimulation(state)
     },
     setCashdownPercentage: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDownPercentage = action.payload;
       state.cashDown = state.costOfProperty * state.cashDownPercentage / 100;
       state.paymentAmount = updatePaymentAmout(state);
+      state.simulationTable = generateSimulation(state)
     },
     setInterestRate: (state: SimulationState, action: PayloadAction<number>) => {
       state.interestRate = action.payload;
       state.paymentAmount = updatePaymentAmout(state);
+      state.simulationTable = generateSimulation(state)
     },
     setTerm: (state: SimulationState, action: PayloadAction<number>) => {
       state.term = action.payload;
       state.paymentAmount = updatePaymentAmout(state);
+      state.simulationTable = generateSimulation(state)
+    },
+    setInitialValue: (state: SimulationState, action: PayloadAction<number>) => {
+      state.initialValue = action.payload;
+      state.simulationTable = generateSimulation(state)
+    },
+    setIncome: (state: SimulationState, action: PayloadAction<number>) => {
+      state.income = action.payload;
+      state.simulationTable = generateSimulation(state)
+    },
+    setOutcome: (state: SimulationState, action: PayloadAction<number>) => {
+      state.expenses = action.payload;
+      state.simulationTable = generateSimulation(state)
     }
   },
 });
@@ -90,7 +161,10 @@ export const {
   setCashdown,
   setCashdownPercentage,
   setInterestRate,
-  setTerm } = simulationSlice.actions;
+  setTerm,
+  setInitialValue,
+  setIncome,
+  setOutcome } = simulationSlice.actions;
 
 export const selectSimulation = (state: RootState) => state.simulation;
 

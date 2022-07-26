@@ -1,4 +1,4 @@
-import styles from './Simulation.module.css';
+import styles from '../Simulation.module.css';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { InputField } from '../../components/InputField';
 import {
@@ -8,7 +8,7 @@ import {
   setCashdownPercentage,
   setInterestRate,
   setTerm
-} from './simulationSlice';
+} from '../simulationSlice';
 import { format } from '../../utils/formatUtil';
 import { useTranslation } from 'react-i18next';
 
