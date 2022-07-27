@@ -10,10 +10,10 @@ export const Income = () => {
 
     return (
         <div>
-            <h1>{t('Income')}</h1>
+            <h1>{t('Revenue')}</h1>
             <InputField 
-                label={t('Income')}
-                ariaLabel={t('Income')}
+                label={t('Revenue')}
+                ariaLabel={t('Revenue')}
                 value={simulation.income}
                 onChange={(e) => { dispatch(setIncome(parseInt(e.target.value))) }}
                 ></InputField>

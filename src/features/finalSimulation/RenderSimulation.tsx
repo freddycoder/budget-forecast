@@ -14,9 +14,9 @@ export const RenderSimulation = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>{t('Mount')}</th>
-                        <th>{t('Income')}</th>
-                        <th>{t('Expense')}</th>
+                        <th>{t('Month')}</th>
+                        <th>{t('Revenue')}</th>
+                        <th>{t('Depense')}</th>
                         <th>{t('MortagePayment')}</th>
                         <th>{t('Difference')}</th>
                         <th>{t('Balance')}</th>

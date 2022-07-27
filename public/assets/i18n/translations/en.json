@@ -13,5 +13,12 @@
     "Payment": "Payment",
     "Interest": "Interest",
     "Principal": "Principal",
-    "Balance": "Balance"
+    "Balance": "Balance",
+    "Difference": "Difference",
+    "MortagePayment": "Mortage payment",
+    "Hypotheque": "Mortage",
+    "Depense": "Expenses",
+    "Revenue": "Income",
+    "Simulation": "Simulation",
+    "InitialValue": "Initial value"
 }

@@ -10,10 +10,10 @@ export const Outcome = () => {
 
     return (
         <div>
-            <h1>{t('Outcome')}</h1>
+            <h1>{t('Depense')}</h1>
             <InputField 
-                label={t('Outcome')}
-                ariaLabel={t('Outcome')}
+                label={t('Depense')}
+                ariaLabel={t('Depense')}
                 value={simulation.expenses}
                 onChange={(e) => { dispatch(setOutcome(parseInt(e.target.value))) }}
                 ></InputField>

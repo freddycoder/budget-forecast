@@ -13,5 +13,12 @@
     "Payment": "Paiement",
     "Interest": "Intérêt",
     "Principal": "Capital",
-    "Balance": "Solde"
+    "Balance": "Solde",
+    "Difference": "Différence",
+    "MortagePayment": "Paiement hypothécaire",
+    "Hypotheque": "Hypothèque",
+    "Depense": "Dépenses",
+    "Revenue": "Revenus",
+    "Simulation": "Simulation",
+    "InitialValue": "Montant initial"
 }
