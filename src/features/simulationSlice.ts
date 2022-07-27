@@ -82,7 +82,7 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
 
   for (let i = 0; i < nbMount; i++) {
     let previousValue = 0;
-    if (i == 0) {
+    if (i === 0) {
       previousValue = state.initialValue;
     }
     else {
