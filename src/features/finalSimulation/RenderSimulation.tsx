@@ -18,7 +18,7 @@ export const RenderSimulation = () => {
                         <th>{t('Month')}</th>
                         <th>{t('Revenue')}</th>
                         <th>{t('Depense')}</th>
-                        <th>{t('MortagePayment')}</th>
+                        <th>{t('MortgagePayment')}</th>
                         <th>{t('Difference')}</th>
                         <th>{t('Balance')}</th>
                     </tr>
