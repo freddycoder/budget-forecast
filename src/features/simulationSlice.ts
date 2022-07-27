@@ -42,7 +42,7 @@ const updatePaymentAmout = (state: SimulationState) => {
   state.paymentTable = [];
 
   let balance = state.costOfProperty - state.cashDown;
-  
+
   const tauxHypothecaire = state.interestRate / 100;
   const interestRate = tauxHypothecaire / 12;
   const totalNumberOfPayment = 12 * state.term;
@@ -51,8 +51,8 @@ const updatePaymentAmout = (state: SimulationState) => {
 
   const num = ((balance * tauxHypothecaire) / 12);
   const den = 1 - Math.pow(1 + tauxHypothecaire / 12, - totalNumberOfPayment);
-  state.paymentAmount = num / den   
-  
+  state.paymentAmount = num / den
+
   for (var i = 0; i < totalNumberOfPayment; i++) {
     if (i > 0) {
       balance = state.paymentTable[i - 1].balance;
@@ -97,12 +97,12 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
     const diff = state.income - state.expenses - mortgagePayment
 
     simulationTable.push({
-       mount: i + 1,
-       income: state.income,
-       expenses: state.expenses,
-       mortgagePayment: mortgagePayment,
-       diff: diff,
-       solde: previousValue + diff
+      mount: i + 1,
+      income: state.income,
+      expenses: state.expenses,
+      mortgagePayment: mortgagePayment,
+      diff: diff,
+      solde: previousValue + diff
     })
   }
 
@@ -156,8 +156,8 @@ export const simulationSlice = createSlice({
   },
 });
 
-export const { 
-  setCostOfProperty, 
+export const {
+  setCostOfProperty,
   setCashdown,
   setCashdownPercentage,
   setInterestRate,
