@@ -7,11 +7,7 @@ import { RenderSimulation } from './features/finalSimulation/RenderSimulation';
 import { NavBar } from './NavBar';
 
 function App() {
-  let baseName = undefined;
-
-  if (window.location.host.includes('github.io')) {
-    baseName = '/buget-forecast';
-  }
+  let baseName = '/buget-forecast';
 
   return (
     <BrowserRouter basename={baseName}>

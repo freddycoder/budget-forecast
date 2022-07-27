@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { LiHref } from "./components/LiHref.component";
 import LangSelector from "./features/languages/LangSelector";
 
@@ -9,16 +10,16 @@ export const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <a href="/hypotheque">{t("Hypotheque")}</a>
+              <Link to="/hypotheque">{t("Hypotheque")}</Link>
             </li>
             <li>
-              <a href="/revenue">{t("Revenue")}</a>
+              <Link to="/revenue">{t("Revenue")}</Link>
             </li>
             <li>
-              <a href="/depense">{t("Depense")}</a>
+              <Link to="/depense">{t("Depense")}</Link>
             </li>
             <li>
-              <a href="/simulation">{t("Simulation")}</a>
+              <Link to="/simulation">{t("Simulation")}</Link>
             </li>
             <LiHref
               href="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/MC-CH-fra.aspx"
