@@ -1,6 +1,6 @@
 import { Simulation } from './features/mortgage/Simulation';
 import './App.css';
-import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Income } from './features/income/Income';
 import { Outcome } from './features/outcome/Outcome';
 import { RenderSimulation } from './features/finalSimulation/RenderSimulation';

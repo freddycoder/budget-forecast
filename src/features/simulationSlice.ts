@@ -23,16 +23,16 @@ let initialState: SimulationState = {
 if (infoInLocalstorage) {
   initialState = JSON.parse(infoInLocalstorage);
 
-  if (initialState.initialValue == undefined) {
+  if (initialState.initialValue === undefined) {
     initialState.initialValue = 0;
   }
-  if (initialState.income == undefined) {
+  if (initialState.income === undefined) {
     initialState.income = 0;
   }
-  if (initialState.expenses == undefined) {
+  if (initialState.expenses === undefined) {
     initialState.expenses = 0;
   }
-  if (initialState.simulationTable == undefined) {
+  if (initialState.simulationTable === undefined) {
     initialState.simulationTable = [];
   }
   initialState.simulationTable = generateSimulation(initialState);
