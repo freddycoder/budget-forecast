@@ -2,6 +2,8 @@
 
 I little app I build to help me forecast my budget and learn React.
 
+Try the app: https://freddycoder.github.io/buget-forecast/
+
 ## Features
 
 - The app work in french or english
