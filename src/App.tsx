@@ -9,7 +9,7 @@ import { NavBar } from './NavBar';
 function App() {
   let baseName = undefined;
 
-  if (location.host.includes('github.io')) {
+  if (window.location.host.includes('github.io')) {
     baseName = '/buget-forecast';
   }
 
@@ -23,15 +23,13 @@ function App() {
         <main className="App-main">
           <article>
             <section>
-              <Router>
-                <Routes>
-                  <Route path="/" element={<Simulation></Simulation>} />
-                  <Route path="/hypotheque" element={<Simulation></Simulation>} />
-                  <Route path="/revenue" element={<Income></Income>} />
-                  <Route path="/depense" element={<Outcome></Outcome>} />
-                  <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
-                </Routes>
-              </Router>
+              <Routes>
+                <Route path="/" element={<Simulation></Simulation>} />
+                <Route path="/hypotheque" element={<Simulation></Simulation>} />
+                <Route path="/revenue" element={<Income></Income>} />
+                <Route path="/depense" element={<Outcome></Outcome>} />
+                <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
+              </Routes>
             </section>
           </article>
         </main>
