@@ -10,7 +10,7 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: '/buget-forecast/assets/i18n/{{ns}}/{{lng}}.json'
+      loadPath: '/budget-forecast/assets/i18n/{{ns}}/{{lng}}.json'
     },
     fallbackLng: 'en',
     debug: true,
