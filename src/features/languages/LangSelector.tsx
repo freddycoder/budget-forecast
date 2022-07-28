@@ -17,7 +17,7 @@ const LangSelector = () => {
       </label>
       <label>
         <input type="radio" value="en" name="language" checked={selectedLang === 'en'}  onChange={changeLanguage} /> English
-    </label>
+      </label>
     </div>
   )
 }

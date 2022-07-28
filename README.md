@@ -9,12 +9,4 @@ Try the app: https://freddycoder.github.io/budget-forecast/
 - The app work in french or english
 - Ability to enter mortgage
 - Ability to enter income and expenses
-- Print a simulation of the budget
-
-### Deploy as github pages
-
-```
-npm run deploy
-```
-
-source: https://reactjsexample.com/a-guide-for-hosting-a-react-app-on-github-pages/
+- Display a simulation of the budget over the period of the mortgage

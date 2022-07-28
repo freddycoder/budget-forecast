@@ -29,7 +29,7 @@
     "Total": "Total",
 
     "PlanificateurBudgetaire": "Planificateur de budget",
-    "TotalMoneySpend": "Total d'argent dépensé ({{val, string}} $)",
+    "TotalMoneySpend": "Total d'argent dépensé ({{val}} $)",
 
     "BudgetForecast": "Simulation du budget"
 }

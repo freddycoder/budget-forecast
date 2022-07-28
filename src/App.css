@@ -67,6 +67,10 @@ ul li ul li:hover {
   cursor: pointer;
 }
 
+.App-header ul li label {
+  cursor: pointer;
+}
+
 .App-main {
   padding-top: 1em;
   display: grid;
