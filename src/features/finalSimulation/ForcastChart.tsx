@@ -1,7 +1,6 @@
 import { Chart } from "react-google-charts";
 import { useAppSelector } from "../../app/hooks";
 import { selectSimulation } from "../simulationSlice";
-import styles from '../Simulation.module.css'
 import { useTranslation } from "react-i18next";
 
 export function ForecastChart() {
@@ -18,7 +17,7 @@ export function ForecastChart() {
 
     const options = {
         chart: {
-            title: "Budget forecast",
+            title: t('BudgetForecast'),
         },
     };
 

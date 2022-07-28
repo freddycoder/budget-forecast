@@ -22,7 +22,7 @@ export const NavBar = () => {
               <Link to="/simulation">{t("Simulation")}</Link>
             </li>
             <li>
-              <a href="#" aria-haspopup="true">{t("LiensUtile")}</a>
+              <span>{t("LiensUtile")}</span>
               <ul>
                 <LiHref
                   href="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/MC-CH-fra.aspx"

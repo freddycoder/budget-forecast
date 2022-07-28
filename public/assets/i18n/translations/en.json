@@ -29,5 +29,7 @@
     "Total": "Total",
 
     "PlanificateurBudgetaire": "Budget planning tool",
-    "TotalMoneySpend": "Total cash spend ({{val, string}} $)"
+    "TotalMoneySpend": "Total cash spend ({{val, string}} $)",
+
+    "BudgetForecast": "Budget forecast"
 }
