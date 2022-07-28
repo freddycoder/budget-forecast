@@ -2,7 +2,7 @@
 
 I little app I build to help me forecast my budget and learn React.
 
-Try the app: https://freddycoder.github.io/buget-forecast/
+Try the app: https://freddycoder.github.io/budget-forecast/
 
 ## Features
 

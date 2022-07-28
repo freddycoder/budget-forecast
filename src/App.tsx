@@ -7,7 +7,7 @@ import { RenderSimulation } from './features/finalSimulation/RenderSimulation';
 import { NavBar } from './NavBar';
 
 function App() {
-  let baseName = '/buget-forecast';
+  let baseName = '/budget-forecast';
 
   return (
     <BrowserRouter basename={baseName}>
