@@ -3,6 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import { format } from "../../utils/formatUtil";
 import { selectSimulation } from "../simulationSlice";
 import styles from '../Simulation.module.css';
+import { ForecastChart } from "./ForcastChart";
 
 export const RenderSimulation = () => {
     const { t } = useTranslation();
@@ -11,6 +12,8 @@ export const RenderSimulation = () => {
     return (
         <div>
             <h1>{t('Simulation')}</h1>
+
+            <ForecastChart />
 
             <table className={styles.table}>
                 <thead>

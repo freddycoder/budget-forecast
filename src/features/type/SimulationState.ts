@@ -8,8 +8,11 @@ export interface SimulationState {
   cashDownPercentage: number
   interestRate: number
   term: number
-  paymentAmount: number,
+  paymentAmount: number
   paymentTable: Array<PaymentInfo>
+
+  totalCapital: number
+  totalInterest: number
 
   // income information
   initialValue: number

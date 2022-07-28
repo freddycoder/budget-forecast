@@ -11,6 +11,7 @@ import {
 } from '../simulationSlice';
 import { format } from '../../utils/formatUtil';
 import { useTranslation } from 'react-i18next';
+import { MortgageChart } from './MortgageChart';
 
 export function Simulation() {
   const simulation = useAppSelector(selectSimulation);
@@ -19,43 +20,48 @@ export function Simulation() {
 
   return (
       <div>
-        <div className={styles.box}>
-          <div className={styles.row}>
-            <InputField label={t('CostOfProperty')}
-              ariaLabel={t('CostOfProperty')}
-              value={simulation.costOfProperty}
-              onChange={(e) => dispatch(setCostOfProperty(parseInt(e.target.value)))} />
+        <div className={styles.row}>
+          <div className={styles.box}>
+            <div className={styles.row}>
+              <InputField label={t('CostOfProperty')}
+                ariaLabel={t('CostOfProperty')}
+                value={simulation.costOfProperty}
+                onChange={(e) => dispatch(setCostOfProperty(parseInt(e.target.value)))} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('CashDown')}
+                ariaLabel={t('CashDown')}
+                value={simulation.cashDown}
+                onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('CashDownPercentage')}
+                ariaLabel={t('CashDownPercentage')}
+                value={simulation.cashDownPercentage}
+                onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('InterestRate')}
+                ariaLabel={t('InterestRate')}
+                value={simulation.interestRate}
+                onChange={(e) => dispatch(setInterestRate(parseInt(e.target.value)))} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('Term')}
+                ariaLabel={t('Term')}
+                value={simulation.term}
+                onChange={(e) => dispatch(setTerm(parseInt(e.target.value)))} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('PaymentAmount')}
+                ariaLabel={t('PaymentAmount')}
+                value={format(simulation.paymentAmount)}
+                onChange={(e) => { return; }} 
+                disabled/>
+            </div>
           </div>
-          <div className={styles.row}>
-            <InputField label={t('CashDown')}
-              ariaLabel={t('CashDown')}
-              value={simulation.cashDown}
-              onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))} />
-          </div>
-          <div className={styles.row}>
-            <InputField label={t('CashDownPercentage')}
-              ariaLabel={t('CashDownPercentage')}
-              value={simulation.cashDownPercentage}
-              onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))} />
-          </div>
-          <div className={styles.row}>
-            <InputField label={t('InterestRate')}
-              ariaLabel={t('InterestRate')}
-              value={simulation.interestRate}
-              onChange={(e) => dispatch(setInterestRate(parseInt(e.target.value)))} />
-          </div>
-          <div className={styles.row}>
-            <InputField label={t('Term')}
-              ariaLabel={t('Term')}
-              value={simulation.term}
-              onChange={(e) => dispatch(setTerm(parseInt(e.target.value)))} />
-          </div>
-          <div className={styles.row}>
-            <InputField label={t('PaymentAmount')}
-              ariaLabel={t('PaymentAmount')}
-              value={format(simulation.paymentAmount)}
-              onChange={(e) => { return; }} 
-              disabled/>
+          <div>
+            <MortgageChart />
           </div>
         </div>
         <div className={styles.row}>

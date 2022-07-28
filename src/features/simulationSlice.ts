@@ -14,6 +14,9 @@ let initialState: SimulationState = {
   paymentAmount: 0,
   paymentTable: [],
 
+  totalCapital: 0,
+  totalInterest: 0,
+
   initialValue: 0,
   income: 0,
   expenses: 0,
@@ -38,7 +41,7 @@ if (infoInLocalstorage) {
   initialState.simulationTable = generateSimulation(initialState);
 }
 
-const updatePaymentAmout = (state: SimulationState) => {
+const updateMortgagePaymentAmount = (state: SimulationState) => {
   state.paymentTable = [];
 
   let balance = state.costOfProperty - state.cashDown;
@@ -116,29 +119,29 @@ export const simulationSlice = createSlice({
   reducers: {
     setCostOfProperty: (state: SimulationState, action: PayloadAction<number>) => {
       state.costOfProperty = action.payload;
-      state.paymentAmount = updatePaymentAmout(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
     setCashdown: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDown = action.payload;
       state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
-      state.paymentAmount = updatePaymentAmout(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
     setCashdownPercentage: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDownPercentage = action.payload;
       state.cashDown = state.costOfProperty * state.cashDownPercentage / 100;
-      state.paymentAmount = updatePaymentAmout(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
     setInterestRate: (state: SimulationState, action: PayloadAction<number>) => {
       state.interestRate = action.payload;
-      state.paymentAmount = updatePaymentAmout(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
     setTerm: (state: SimulationState, action: PayloadAction<number>) => {
       state.term = action.payload;
-      state.paymentAmount = updatePaymentAmout(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
     setInitialValue: (state: SimulationState, action: PayloadAction<number>) => {
