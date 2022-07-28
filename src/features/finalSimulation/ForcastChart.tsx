@@ -8,11 +8,11 @@ export function ForecastChart() {
     const { t } = useTranslation();
 
     const data: any[] = [
-        [t('Month'), t('Balance')],
+        [t('Year'), t('Balance')],
     ]
 
     for (let i = 0; i < simulation.simulationTable.length; i++) {
-        data.push([simulation.simulationTable[i].mount, simulation.simulationTable[i].solde]);
+        data.push([simulation.simulationTable[i].mount / 12, simulation.simulationTable[i].solde]);
     }
 
     const options = {

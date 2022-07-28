@@ -31,5 +31,6 @@
     "PlanificateurBudgetaire": "Budget planning tool",
     "TotalMoneySpend": "Total cash spend ({{val}} $)",
 
-    "BudgetForecast": "Budget forecast"
+    "BudgetForecast": "Budget forecast",
+    "Year": "Year"
 }
