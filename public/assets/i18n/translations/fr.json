@@ -20,5 +20,14 @@
     "Depense": "Dépenses",
     "Revenue": "Revenus",
     "Simulation": "Simulation",
-    "InitialValue": "Montant initial"
+    "InitialValue": "Montant initial",
+
+    "LiensUtile": "Liens utiles",
+
+    "Money": "Argent",
+    "MortgageChartTitle": "Graphique hypothécaire",
+    "Total": "Total",
+
+    "PlanificateurBudgetaire": "Planificateur de budget",
+    "TotalMoneySpend": "Total d'argent dépensé ({{val, string}} $)"
 }

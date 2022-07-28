@@ -2,9 +2,12 @@ import { Chart } from "react-google-charts";
 import { useAppSelector } from "../../app/hooks";
 import { format } from "../../utils/formatUtil";
 import { selectSimulation } from "../simulationSlice";
+import styles from '../Simulation.module.css'
+import { useTranslation } from "react-i18next";
 
 export function MortgageChart() {
     const simulation = useAppSelector(selectSimulation);
+    const { t } = useTranslation();
 
     let totalCapital = 0;
     let totalInterest = 0;
@@ -15,26 +18,28 @@ export function MortgageChart() {
     }
 
     const data = [
-        ["City", "Capital", "Interest"],
-        ["Total", totalCapital, totalInterest],
+        [t('Hypotheque'), t('Principal'), t('Interest')],
+        [t('Total'), totalCapital, totalInterest],
     ]
 
     let total = totalCapital + totalInterest;
 
     const options = {
-        title: "Mortgage Chart",
+        title: t('MortgageChartTitle'),
         chartArea: { width: "50%" },
         isStacked: true,
         hAxis: {
-            title: `Total cash spend (${format(total)} $)`,
+            title: t('TotalMoneySpend', { val: format(total) }),
             minValue: 0,
         },
         vAxis: {
-            title: "Money",
+            title: t('Money'),
         }
     };
 
     return (
-        <Chart chartType="BarChart" width="100%" height="400px" data={data} options={options} />
+        <div className={styles.chartDiv}>
+            <Chart chartType="BarChart" width="100%" height="400px" data={data} options={options} />
+        </div>
     )
 }

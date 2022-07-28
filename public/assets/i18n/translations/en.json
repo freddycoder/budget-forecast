@@ -20,5 +20,14 @@
     "Depense": "Expenses",
     "Revenue": "Income",
     "Simulation": "Simulation",
-    "InitialValue": "Initial value"
+    "InitialValue": "Initial value",
+
+    "LiensUtile": "Usefull links",
+
+    "Money": "Money",
+    "MortgageChartTitle": "Mortgage chart",
+    "Total": "Total",
+
+    "PlanificateurBudgetaire": "Budget planning tool",
+    "TotalMoneySpend": "Total cash spend ({{val, string}} $)"
 }

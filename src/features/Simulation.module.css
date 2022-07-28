@@ -7,6 +7,7 @@
   border: 1px solid #cfcfcfcf;
   border-radius: 5px;
   padding: 1em;
+  margin: 1em;
 }
 
 .box div {
@@ -97,7 +98,9 @@
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
+  width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
 }
 
 .table thead tr {
@@ -126,4 +129,8 @@
 .table tbody tr.active-row {
   font-weight: bold;
   color: #009879;
+}
+
+.chartDiv {
+  margin: 1em;
 }
