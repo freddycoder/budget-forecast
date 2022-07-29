@@ -83,28 +83,31 @@ export function Mortgage() {
           <InsuranceSCHL />
         </div>) : undefined}
         <div className={styles.row}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>{t('Month')}</th>
-                <th>{t('Payment')}</th>
-                <th>{t('Interest')}</th>
-                <th>{t('Principal')}</th>
-                <th>{t('Balance')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {simulation.paymentTable.map((payment, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{format(payment.paymentAmount)} $</td>
-                  <td>{format(payment.interest)} $</td>
-                  <td>{format(payment.principal)} $</td>
-                  <td>{format(payment.balance)} $</td>
+          <div style={{width: "100%"}}>
+            <h5>{t('TableauPaiementHypothecaire')}</h5>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('Month')}</th>
+                  <th>{t('Payment')}</th>
+                  <th>{t('Interest')}</th>
+                  <th>{t('Principal')}</th>
+                  <th>{t('Balance')}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {simulation.paymentTable.map((payment, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{format(payment.paymentAmount)} $</td>
+                    <td>{format(payment.interest)} $</td>
+                    <td>{format(payment.principal)} $</td>
+                    <td>{format(payment.balance)} $</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
   );

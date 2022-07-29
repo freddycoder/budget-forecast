@@ -44,5 +44,6 @@
     "HouseInsurance": "House insurance",
     "HouseInsuranceTaxes": "House insurance taxe",
 
-    "SCHLTaxesMessage": "A taxe of {{val}} $ will need to be payed and cannot be added to the mortgage."
+    "SCHLTaxesMessage": "A taxe of {{val}} $ will need to be payed and cannot be added to the mortgage.",
+    "TableauPaiementHypothecaire": "Mortgage payment table"
 }
