@@ -136,12 +136,14 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
 function CalculateSCHL(state: SimulationState) {
   let percentSCHL = 0;
 
-  for (let i = 0; i < InsuranceSCHLArray.length; i++) {
-    const x = 1 - (state.cashDownPercentage / 100);
-    const y = InsuranceSCHLArray[i].ratio
-    if (x <= y) {
-      percentSCHL = InsuranceSCHLArray[i].prime
-      break;
+  if (state.cashDownPercentage < 20) {
+    for (let i = 0; i < InsuranceSCHLArray.length; i++) {
+      const x = 1 - (state.cashDownPercentage / 100);
+      const y = InsuranceSCHLArray[i].ratio
+      if (x <= y) {
+        percentSCHL = InsuranceSCHLArray[i].prime
+        break;
+      }
     }
   }
 
