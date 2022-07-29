@@ -58,7 +58,7 @@ if (infoInLocalstorage) {
 const updateMortgagePaymentAmount = (state: SimulationState) => {
   state.paymentTable = [];
 
-  let balance = state.costOfProperty - state.cashDown + state.insuranceSCHL;
+  let balance = state.costOfProperty + state.insuranceSCHL - state.cashDown;
 
   const tauxHypothecaire = state.interestRate / 100;
   const interestRate = tauxHypothecaire / 12;
@@ -167,8 +167,8 @@ export const simulationSlice = createSlice({
       else {
         state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
       }
-      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.insuranceSCHL = CalculateSCHL(state);
+      state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state);
     },
     setCashdown: (state: SimulationState, action: PayloadAction<number>) => {
