@@ -9,6 +9,7 @@ export interface SimulationState {
   interestRate: number
   term: number
   paymentAmount: number
+  insuranceSCHL: number
   paymentTable: Array<PaymentInfo>
 
   totalCapital: number

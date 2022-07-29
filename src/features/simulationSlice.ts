@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
+import { InsuranceSCHLArray } from './mortgage/InsuranceSCHL';
 import { SimulationState } from './type/SimulationState';
 import { SimulationStep } from './type/SimulationStep';
 
@@ -12,6 +13,7 @@ let initialState: SimulationState = {
   interestRate: 0,
   term: 0,
   paymentAmount: 0,
+  insuranceSCHL: 0,
   paymentTable: [],
 
   totalCapital: 0,
@@ -38,13 +40,17 @@ if (infoInLocalstorage) {
   if (initialState.simulationTable === undefined) {
     initialState.simulationTable = [];
   }
+  if (initialState.insuranceSCHL === undefined) {
+    initialState.insuranceSCHL = 0;
+  }
+  initialState.insuranceSCHL = CalculateSCHL(initialState);
   initialState.simulationTable = generateSimulation(initialState);
 }
 
 const updateMortgagePaymentAmount = (state: SimulationState) => {
   state.paymentTable = [];
 
-  let balance = state.costOfProperty - state.cashDown;
+  let balance = state.costOfProperty - state.cashDown + state.insuranceSCHL;
 
   const tauxHypothecaire = state.interestRate / 100;
   const interestRate = tauxHypothecaire / 12;
@@ -112,11 +118,29 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
   return simulationTable;
 }
 
+function CalculateSCHL(state: SimulationState) {
+  let percentSCHL = 0;
+
+  for (let i = 0; i < InsuranceSCHLArray.length; i++) {
+    const x = 1 - (state.cashDownPercentage / 100);
+    const y = InsuranceSCHLArray[i].ratio
+    console.log(x);
+    console.log(y);
+    if (x <= y) {
+      percentSCHL = InsuranceSCHLArray[i].prime
+      break;
+    }
+  }
+
+  console.log(percentSCHL);
+
+  return (state.costOfProperty - state.cashDown) * percentSCHL
+}
+
 export interface SetCostOfPropertyProps {
   costOfProperty: number;
   percentLock: boolean;
 }
-
 
 export const simulationSlice = createSlice({
   name: 'simulator',
@@ -131,18 +155,21 @@ export const simulationSlice = createSlice({
         state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
       }
       state.paymentAmount = updateMortgagePaymentAmount(state);
-      state.simulationTable = generateSimulation(state)
+      state.insuranceSCHL = CalculateSCHL(state);
+      state.simulationTable = generateSimulation(state);
     },
     setCashdown: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDown = action.payload;
       state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
       state.paymentAmount = updateMortgagePaymentAmount(state);
-      state.simulationTable = generateSimulation(state)
+      state.insuranceSCHL = CalculateSCHL(state);
+      state.simulationTable = generateSimulation(state);
     },
     setCashdownPercentage: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDownPercentage = action.payload;
       state.cashDown = state.costOfProperty * state.cashDownPercentage / 100;
       state.paymentAmount = updateMortgagePaymentAmount(state);
+      state.insuranceSCHL = CalculateSCHL(state);
       state.simulationTable = generateSimulation(state)
     },
     setInterestRate: (state: SimulationState, action: PayloadAction<number>) => {

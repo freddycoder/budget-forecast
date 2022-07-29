@@ -32,5 +32,7 @@
     "TotalMoneySpend": "Total d'argent dépensé ({{val}} $)",
 
     "BudgetForecast": "Simulation du budget",
-    "Year": "Année"
+    "Year": "Année",
+
+    "TextInsuranceSCHL": "Vous devez acheter une assurance-prêt hypothécaire si votre mise de fonds est inférieure à 20 % du prix d'achat de la propriété."
 }

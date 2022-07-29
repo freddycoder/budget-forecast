@@ -13,6 +13,7 @@ import { format } from '../../utils/formatUtil';
 import { useTranslation } from 'react-i18next';
 import { MortgageChart } from './MortgageChart';
 import { useState } from 'react';
+import { InsuranceSCHL } from './InsuranceSCHL';
 
 export function Mortgage() {
   const simulation = useAppSelector(selectSimulation);
@@ -78,6 +79,9 @@ export function Mortgage() {
             <MortgageChart />
           </div>
         </div>
+        {simulation.cashDownPercentage < 20 ? (<div className={styles.row}>
+          <InsuranceSCHL />
+        </div>) : undefined}
         <div className={styles.row}>
           <table className={styles.table}>
             <thead>
