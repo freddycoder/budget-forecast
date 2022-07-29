@@ -34,5 +34,18 @@
     "BudgetForecast": "Simulation du budget",
     "Year": "Année",
 
-    "TextInsuranceSCHL": "Vous devez acheter une assurance-prêt hypothécaire si votre mise de fonds est inférieure à 20 % du prix d'achat de la propriété."
+    "TextInsuranceSCHL": "Vous devez acheter une assurance-prêt hypothécaire lorsque votre mise de fonds est inférieure à 20 % du prix d'achat de la propriété.",
+    "MessageMontantAssuranceSCHL": "Le coût de l'assurance SHCL sera de {{val}} $. Ce montant sera ajouté à l'hypothèque.",
+    "Prime": "Prime",
+    "Ratio": "Ratio",
+    "InsuranceSCHL": "Assurance SCHL",
+
+    "BanqueRoyalSCHLinfo": "Information SCHL Banque Royal",
+    "CoutAssurancePret": "Coût de l'assurance-prêt",
+    "GuideAchatMaison": "Guide d'achat de maison",
+
+    "HouseInsurance": "Assurance-maison",
+    "HouseInsuranceTaxes": "Taxes d'assurance-maison",
+
+    "SCHLTaxesMessage": "Une taxe de {{val}} $ devra être payer et ne pourra pas être ajouté à l'hypothèque."
 }

@@ -59,7 +59,7 @@ export function Mortgage() {
               <InputField label={t('InterestRate')}
                 ariaLabel={t('InterestRate')}
                 value={simulation.interestRate}
-                onChange={(e) => dispatch(setInterestRate(parseInt(e.target.value)))} />
+                onChange={(e) => dispatch(setInterestRate(parseFloat(e.target.value)))} />
             </div>
             <div className={styles.row}>
               <InputField label={t('Term')}

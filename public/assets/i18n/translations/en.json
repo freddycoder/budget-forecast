@@ -32,5 +32,17 @@
     "TotalMoneySpend": "Total cash spend ({{val}} $)",
 
     "BudgetForecast": "Budget forecast",
-    "Year": "Year"
+    "Year": "Year",
+
+    "MessageMontantAssuranceSCHL": "The amount of the SCHL insurance is {{val}} $. This amount will be added to the mortgage cost.",
+    "TextInsuranceSCHL": "You must buy a SCHL insurance when the cash down is less than 20% of the total cost of the house.",
+
+    "Prime": "Prime",
+    "Ratio": "Ratio",
+    "InsuranceSCHL": "SCHL insurance",
+
+    "HouseInsurance": "House insurance",
+    "HouseInsuranceTaxes": "House insurance taxe",
+
+    "SCHLTaxesMessage": "A taxe of {{val}} $ will need to be payed and cannot be added to the mortgage."
 }

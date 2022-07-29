@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { InsuranceSCHLArray } from './mortgage/InsuranceSCHL';
+import { InsuranceSCHLArray, InsuranceSCHLTaxes } from './mortgage/InsuranceSCHL';
 import { SimulationState } from './type/SimulationState';
 import { SimulationStep } from './type/SimulationStep';
 
@@ -22,6 +22,8 @@ let initialState: SimulationState = {
   initialValue: 0,
   income: 0,
   expenses: 0,
+  houseInsurance: 0,
+  houseInsuranceTaxes: 0,
   simulationTable: []
 };
 
@@ -42,6 +44,12 @@ if (infoInLocalstorage) {
   }
   if (initialState.insuranceSCHL === undefined) {
     initialState.insuranceSCHL = 0;
+  }
+  if (initialState.houseInsurance === undefined) {
+    initialState.houseInsurance = 0;
+  }
+  if (initialState.houseInsuranceTaxes === undefined) {
+    initialState.houseInsuranceTaxes = 0;
   }
   initialState.insuranceSCHL = CalculateSCHL(initialState);
   initialState.simulationTable = generateSimulation(initialState);
@@ -92,7 +100,13 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
   for (let i = 0; i < nbMount; i++) {
     let previousValue = 0;
     if (i === 0) {
-      previousValue = state.initialValue;
+      let schl = 0;
+
+      if (state.cashDownPercentage < 20) {
+        schl = state.insuranceSCHL + (state.insuranceSCHL * InsuranceSCHLTaxes);
+      }
+
+      previousValue = state.initialValue - state.cashDown - schl;
     }
     else {
       previousValue = simulationTable[i - 1].solde;
@@ -103,12 +117,13 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
       mortgagePayment = state.paymentTable[i].paymentAmount;
     }
 
-    const diff = state.income - state.expenses - mortgagePayment
+    const totalExpenses = state.expenses + (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100)));
+    const diff = state.income - totalExpenses - mortgagePayment
 
     simulationTable.push({
       mount: i + 1,
       income: state.income,
-      expenses: state.expenses,
+      expenses: totalExpenses,
       mortgagePayment: mortgagePayment,
       diff: diff,
       solde: previousValue + diff
@@ -124,15 +139,11 @@ function CalculateSCHL(state: SimulationState) {
   for (let i = 0; i < InsuranceSCHLArray.length; i++) {
     const x = 1 - (state.cashDownPercentage / 100);
     const y = InsuranceSCHLArray[i].ratio
-    console.log(x);
-    console.log(y);
     if (x <= y) {
       percentSCHL = InsuranceSCHLArray[i].prime
       break;
     }
   }
-
-  console.log(percentSCHL);
 
   return (state.costOfProperty - state.cashDown) * percentSCHL
 }
@@ -193,6 +204,14 @@ export const simulationSlice = createSlice({
     setOutcome: (state: SimulationState, action: PayloadAction<number>) => {
       state.expenses = action.payload;
       state.simulationTable = generateSimulation(state)
+    },
+    setHouseInsurance: (state: SimulationState, action: PayloadAction<number>) => {
+      state.houseInsurance = action.payload;
+      state.simulationTable = generateSimulation(state)
+    },
+    setHouseInsuranceTaxes: (state: SimulationState, action: PayloadAction<number>) => {
+      state.houseInsuranceTaxes = action.payload;
+      state.simulationTable = generateSimulation(state)
     }
   },
 });
@@ -205,7 +224,9 @@ export const {
   setTerm,
   setInitialValue,
   setIncome,
-  setOutcome } = simulationSlice.actions;
+  setOutcome,
+  setHouseInsurance,
+  setHouseInsuranceTaxes } = simulationSlice.actions;
 
 export const selectSimulation = (state: RootState) => state.simulation;
 

@@ -13,13 +13,15 @@ export const InsuranceSCHLArray = [
     { ratio: 0.95, prime: 0.040 },
 ]
 
+export const InsuranceSCHLTaxes = 0.09975;
+
 export function InsuranceSCHL() {
     const { t } = useTranslation();
     const simulation = useAppSelector(selectSimulation);
 
     return (
         <div>
-            <h5>Assurance SCHL</h5>
+            <h5>{t('InsuranceSCHL')}</h5>
             <div className={styles.row}>
                 <table className={styles.tableSmall}>
                     <thead>
@@ -40,10 +42,10 @@ export function InsuranceSCHL() {
 
                 <div className={styles.infoDiv}>
                     <p>{t('TextInsuranceSCHL')}</p>
-                    <p>Le coût de l'assurance SHCL sera de {format(simulation.insuranceSCHL)} $. Ce montant sera ajouté à l'hypothèque.</p>
+                    <p>{t('MessageMontantAssuranceSCHL', {val: format(simulation.insuranceSCHL)})}</p>
+                    <p>{t('SCHLTaxesMessage', {val: format(simulation.insuranceSCHL * InsuranceSCHLTaxes)})}</p>
                 </div>
             </div>
-
         </div>
     );
 }

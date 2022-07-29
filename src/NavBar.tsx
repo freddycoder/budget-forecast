@@ -33,6 +33,15 @@ export const NavBar = () => {
                 <LiHref
                   href="http://www.calculconversion.com/calcul-pret-hypothecaire.html#:~:text=Formule%20du%20pr%C3%AAt%20hypoth%C3%A9caire%20Le%20versement%20mensuel%20%3D,l%27ann%C3%A9e%29-Nombre%20de%20versements%20%2A%20Nombre%20d%27ann%C3%A9es%20du%20terme"
                   text={t("CommentCalculerPret")}></LiHref>
+                <LiHref
+                  href="https://www.cmhc-schl.gc.ca/fr/consommateurs/acheter-une-maison/guides-dachat/lachat-dune-maison-etape-par-etape"
+                  text={t("GuideAchatMaison")}></LiHref>
+                <LiHref
+                  href="https://www.cmhc-schl.gc.ca/fr/consommateurs/acheter-une-maison/assurance-pret-hypothecaire-pour-les-consommateurs/couts-de-lassurance-pret-hypothecaire-schl"
+                  text={t("CoutAssurancePret")}></LiHref>
+                <LiHref
+                  href="http://www.rbcbanqueroyale.com/hypotheques/pdf/84680_FS_72729_0913_Disclosure_F.pdf"
+                  text={t("BanqueRoyalSCHLinfo")}></LiHref>
               </ul>
             </li>
             <li>
