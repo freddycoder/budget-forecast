@@ -35,7 +35,7 @@
     "Year": "Année",
 
     "TextInsuranceSCHL": "Vous devez acheter une assurance-prêt hypothécaire lorsque votre mise de fonds est inférieure à 20 % du prix d'achat de la propriété.",
-    "MessageMontantAssuranceSCHL": "Le coût de l'assurance SHCL sera de {{val}} $. Ce montant sera ajouté à l'hypothèque.",
+    "MessageMontantAssuranceSCHL": "Le coût de l'assurance SCHL sera de {{val}} $. Ce montant sera ajouté à l'hypothèque.",
     "Prime": "Prime",
     "Ratio": "Ratio",
     "InsuranceSCHL": "Assurance SCHL",
