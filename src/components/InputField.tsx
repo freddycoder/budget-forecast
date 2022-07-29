@@ -25,7 +25,7 @@ export const InputField = (props: InputFieldProps) => {
 
             {props.lockable && 
                 <input type="checkbox" 
-                       onChange={(args) => props.isLock && props.onLock != undefined ? props.onLock(args) : undefined} 
+                       onChange={(args) => props.isLock && props.onLock !== undefined ? props.onLock(args) : undefined} 
                        checked={!props.isLock}></input>}
         </div>
     )
