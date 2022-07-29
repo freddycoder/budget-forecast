@@ -1,4 +1,4 @@
-import { Simulation } from './features/mortgage/Simulation';
+import { Mortgage } from './features/mortgage/Mortgage';
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Income } from './features/income/Income';
@@ -10,27 +10,29 @@ function App() {
   let baseName = '/budget-forecast';
 
   return (
-    <BrowserRouter basename={baseName}>
-      <div className="App">
-        <header className="App-header">
-          <NavBar></NavBar>
-        </header>
+    <>
+      <BrowserRouter basename={baseName}>
+        <div className="App">
+          <header className="App-header">
+            <NavBar></NavBar>
+          </header>
 
-        <main className="App-main">
-          <article>
-            <section>
-              <Routes>
-                <Route path="/" element={<Simulation></Simulation>} />
-                <Route path="/hypotheque" element={<Simulation></Simulation>} />
-                <Route path="/revenue" element={<Income></Income>} />
-                <Route path="/depense" element={<Outcome></Outcome>} />
-                <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
-              </Routes>
-            </section>
-          </article>
-        </main>
-      </div>
-    </BrowserRouter>
+          <main className="App-main">
+            <article>
+              <section>
+                <Routes>
+                  <Route path="/" element={<Mortgage></Mortgage>} />
+                  <Route path="/hypotheque" element={<Mortgage></Mortgage>} />
+                  <Route path="/revenue" element={<Income></Income>} />
+                  <Route path="/depense" element={<Outcome></Outcome>} />
+                  <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
+                </Routes>
+              </section>
+            </article>
+          </main>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 

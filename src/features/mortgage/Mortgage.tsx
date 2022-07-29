@@ -12,11 +12,19 @@ import {
 import { format } from '../../utils/formatUtil';
 import { useTranslation } from 'react-i18next';
 import { MortgageChart } from './MortgageChart';
+import { useState } from 'react';
 
-export function Simulation() {
+export function Mortgage() {
   const simulation = useAppSelector(selectSimulation);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const lockFromStorage = localStorage.getItem('lock');
+  const [percentLock, setPercentLock] = useState(lockFromStorage === 'true' || lockFromStorage === null);
+
+  const switchLock = (args: any) => {
+    setPercentLock(!percentLock);
+    localStorage.setItem('lock', String(!percentLock));
+  }
 
   return (
       <div>
@@ -26,19 +34,25 @@ export function Simulation() {
               <InputField label={t('CostOfProperty')}
                 ariaLabel={t('CostOfProperty')}
                 value={simulation.costOfProperty}
-                onChange={(e) => dispatch(setCostOfProperty(parseInt(e.target.value)))} />
+                onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))} />
             </div>
             <div className={styles.row}>
               <InputField label={t('CashDown')}
                 ariaLabel={t('CashDown')}
                 value={simulation.cashDown}
-                onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))} />
+                onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))}
+                lockable={true} 
+                onLock={(args) => switchLock(args)}
+                isLock={percentLock} />
             </div>
             <div className={styles.row}>
               <InputField label={t('CashDownPercentage')}
                 ariaLabel={t('CashDownPercentage')}
                 value={simulation.cashDownPercentage}
-                onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))} />
+                onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))}
+                lockable={true}
+                onLock={(args) => switchLock(args)}
+                isLock={!percentLock} />
             </div>
             <div className={styles.row}>
               <InputField label={t('InterestRate')}

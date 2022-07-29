@@ -6,6 +6,9 @@ interface InputFieldProps {
     onChange: React.InputHTMLAttributes<HTMLInputElement>['onChange']
     ariaLabel: string | undefined
     disabled?: boolean
+    lockable?: boolean
+    isLock?: boolean
+    onLock?: React.InputHTMLAttributes<HTMLInputElement>['onChange']
 }
 
 export const InputField = (props: InputFieldProps) => {
@@ -17,8 +20,13 @@ export const InputField = (props: InputFieldProps) => {
                 aria-label={props.ariaLabel}
                 value={props.value}
                 onChange={props.onChange}
-                disabled={props.disabled}
+                disabled={props.disabled || props.isLock}
             />
+
+            {props.lockable && 
+                <input type="checkbox" 
+                       onChange={(args) => props.isLock && props.onLock != undefined ? props.onLock(args) : undefined} 
+                       checked={!props.isLock}></input>}
         </div>
     )
 }

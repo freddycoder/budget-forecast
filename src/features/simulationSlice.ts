@@ -112,13 +112,24 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
   return simulationTable;
 }
 
+export interface SetCostOfPropertyProps {
+  costOfProperty: number;
+  percentLock: boolean;
+}
+
 
 export const simulationSlice = createSlice({
   name: 'simulator',
   initialState,
   reducers: {
-    setCostOfProperty: (state: SimulationState, action: PayloadAction<number>) => {
-      state.costOfProperty = action.payload;
+    setCostOfProperty: (state: SimulationState, action: PayloadAction<SetCostOfPropertyProps>) => {
+      state.costOfProperty = action.payload.costOfProperty;
+      if (action.payload.percentLock) {
+        state.cashDown = state.costOfProperty * state.cashDownPercentage / 100;
+      }
+      else {
+        state.cashDownPercentage = state.cashDown / state.costOfProperty * 100;
+      }
       state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state)
     },
