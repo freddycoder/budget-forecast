@@ -80,6 +80,13 @@ ul li ul li:hover {
   font-size: calc(10px + 2vmin);
 }
 
+@media screen and (max-width: 900px) {
+  .App-main {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+}
+
 a {
   color: #cfcfcfcf;
   text-decoration: unset;
