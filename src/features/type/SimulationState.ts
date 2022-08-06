@@ -23,7 +23,12 @@ export interface SimulationState {
   expenses: number
   houseInsurance: number
   houseInsuranceTaxes: number
+  municipalTaxes: number
+  scollarTaxes: number
+  energyCost: number
 
   // final information
   simulationTable: Array<SimulationStep>
+
+  beginingDate: Date
 }

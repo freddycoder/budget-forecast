@@ -48,5 +48,9 @@
     "HouseInsuranceTaxes": "Taxes d'assurance-maison",
 
     "SCHLTaxesMessage": "Une taxe de {{val}} $ devra être payer et ne pourra pas être ajouté à l'hypothèque.",
-    "TableauPaiementHypothecaire": "Tableau de paiement hypothécaire"
+    "TableauPaiementHypothecaire": "Tableau de paiement hypothécaire",
+
+    "MunicipalTaxes": "Taxe municipal",
+    "SchoolTaxes": "Taxe scolaire",
+    "EnergyCost": "Coût d'énergie"
 }

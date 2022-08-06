@@ -24,7 +24,12 @@ let initialState: SimulationState = {
   expenses: 0,
   houseInsurance: 0,
   houseInsuranceTaxes: 0,
-  simulationTable: []
+  municipalTaxes: 0,
+  scollarTaxes: 0,
+  energyCost: 0,
+  simulationTable: [],
+
+  beginingDate: new Date()
 };
 
 if (infoInLocalstorage) {
@@ -50,6 +55,15 @@ if (infoInLocalstorage) {
   }
   if (initialState.houseInsuranceTaxes === undefined) {
     initialState.houseInsuranceTaxes = 0;
+  }
+  if (initialState.municipalTaxes === undefined) {
+    initialState.municipalTaxes = 0;
+  }
+  if (initialState.scollarTaxes === undefined) {
+    initialState.scollarTaxes = 0;
+  }
+  if (initialState.energyCost === undefined) {
+    initialState.energyCost = 0;
   }
   initialState.insuranceSCHL = CalculateSCHL(initialState);
   initialState.simulationTable = generateSimulation(initialState);
@@ -117,7 +131,14 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
       mortgagePayment = state.paymentTable[i].paymentAmount;
     }
 
-    const totalExpenses = state.expenses + (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100)));
+    let totalExpenses = state.expenses + 
+                       (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100))) +
+                        state.energyCost;
+
+    if (i > 0 && i % 12 === 0) {
+      totalExpenses += state.municipalTaxes + state.scollarTaxes;
+    }
+
     const diff = state.income - totalExpenses - mortgagePayment
 
     simulationTable.push({
@@ -214,6 +235,18 @@ export const simulationSlice = createSlice({
     setHouseInsuranceTaxes: (state: SimulationState, action: PayloadAction<number>) => {
       state.houseInsuranceTaxes = action.payload;
       state.simulationTable = generateSimulation(state)
+    },
+    setMinucipalTaxes: (state: SimulationState, action: PayloadAction<number>) => {
+      state.municipalTaxes = action.payload;
+      state.simulationTable = generateSimulation(state)
+    },
+    setScollarTaxes: (state: SimulationState, action: PayloadAction<number>) => {
+      state.scollarTaxes = action.payload;
+      state.simulationTable = generateSimulation(state)
+    },
+    setEnergyCost: (state: SimulationState, action: PayloadAction<number>) => {
+      state.energyCost = action.payload;
+      state.simulationTable = generateSimulation(state)
     }
   },
 });
@@ -228,7 +261,10 @@ export const {
   setIncome,
   setOutcome,
   setHouseInsurance,
-  setHouseInsuranceTaxes } = simulationSlice.actions;
+  setHouseInsuranceTaxes,
+  setMinucipalTaxes,
+  setScollarTaxes,
+  setEnergyCost } = simulationSlice.actions;
 
 export const selectSimulation = (state: RootState) => state.simulation;
 
