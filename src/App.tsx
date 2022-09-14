@@ -7,32 +7,30 @@ import { RenderSimulation } from './features/finalSimulation/RenderSimulation';
 import { NavBar } from './NavBar';
 
 function App() {
-  let baseName = '/budget-forecast';
+  let baseName = window.BASE_PATH;
 
   return (
-    <>
-      <BrowserRouter basename={baseName}>
-        <div className="App">
-          <header className="App-header">
-            <NavBar></NavBar>
-          </header>
+    <BrowserRouter basename={baseName}>
+      <div className="App">
+        <header className="App-header">
+          <NavBar></NavBar>
+        </header>
 
-          <main className="App-main">
-            <article>
-              <section>
-                <Routes>
-                  <Route path="/" element={<Mortgage></Mortgage>} />
-                  <Route path="/hypotheque" element={<Mortgage></Mortgage>} />
-                  <Route path="/revenue" element={<Income></Income>} />
-                  <Route path="/depense" element={<Outcome></Outcome>} />
-                  <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
-                </Routes>
-              </section>
-            </article>
-          </main>
-        </div>
-      </BrowserRouter>
-    </>
+        <main className="App-main">
+          <article>
+            <section>
+              <Routes>
+                <Route path="/" element={<Mortgage></Mortgage>} />
+                <Route path="/hypotheque" element={<Mortgage></Mortgage>} />
+                <Route path="/revenue" element={<Income></Income>} />
+                <Route path="/depense" element={<Outcome></Outcome>} />
+                <Route path="/simulation" element={<RenderSimulation></RenderSimulation>} />
+              </Routes>
+            </section>
+          </article>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 

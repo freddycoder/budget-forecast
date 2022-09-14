@@ -1,0 +1,1 @@
+var BASE_PATH = "/budget-forecast"
