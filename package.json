@@ -4,7 +4,7 @@
   "homepage": "https://freddycoder.github.io/budget-forecast/",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.2",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
