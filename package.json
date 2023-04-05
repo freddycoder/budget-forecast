@@ -1,8 +1,8 @@
 {
   "name": "budget-forecast",
-  "version": "0.1.0",
-  "homepage": "https://freddycoder.github.io/budget-forecast/",
+  "version": "1.0.0",
   "private": true,
+  "type":"module",
   "dependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-syntax-flow": "^7.14.5",
