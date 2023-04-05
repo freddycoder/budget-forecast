@@ -6,15 +6,20 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 16.x
+          version: 7.27.0
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
       - name: Build
-        run: npm run build
+        run: pnpm run build
