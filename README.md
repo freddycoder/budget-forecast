@@ -11,6 +11,13 @@ Try the app: https://freddycoder.github.io/budget-forecast/
 - Ability to enter income and expenses
 - Display a simulation of the budget over the period of the mortgage
 
+## Run the app on your machine
+
+```
+pnpm install
+npm start
+```
+
 ## Docker
 
 To build the docker image:
