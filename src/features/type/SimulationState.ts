@@ -1,9 +1,12 @@
+import { AdditionnalIncome } from "./AdditionnalIncome"
+import { AdditionnalOutcome } from "./AdditionnalOutcome"
 import { PaymentInfo } from "./PaiementInfo"
 import { SimulationStep } from "./SimulationStep"
 
 export interface SimulationState {
   // Mortgage information
   costOfProperty: number
+  actualMortgageAmount: number
   cashDown: number
   cashDownPercentage: number
   interestRate: number
@@ -18,6 +21,7 @@ export interface SimulationState {
   // income information
   initialValue: number
   income: number
+  aditionnalIncomes: Array<AdditionnalIncome>
 
   // expenses information
   expenses: number
@@ -26,6 +30,7 @@ export interface SimulationState {
   municipalTaxes: number
   scollarTaxes: number
   energyCost: number
+  aditionnalOutcome: Array<AdditionnalOutcome>
 
   // final information
   simulationTable: Array<SimulationStep>

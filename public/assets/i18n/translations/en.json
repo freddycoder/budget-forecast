@@ -3,6 +3,7 @@
     "CommentCalculerPret": "How to calculate a mortgage",
 
     "CostOfProperty": "Cost of property",
+    "ActualMortageAmount": "Actual mortgage amount",
     "CashDown": "Cash down",
     "CashDownPercentage": "Cash down percentage",
     "InterestRate": "Interest rate",
@@ -18,7 +19,9 @@
     "MortgagePayment": "Mortgage payment",
     "Hypotheque": "Mortgage",
     "Depense": "Expenses",
+    "DepenseAdditionnel": "Additional expenses",
     "Revenue": "Income",
+    "RevenueAdditionnel": "Additional income",
     "Simulation": "Simulation",
     "InitialValue": "Initial value",
 

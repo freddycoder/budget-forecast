@@ -8,6 +8,7 @@ const infoInLocalstorage = localStorage.getItem('simulation');
 
 let initialState: SimulationState = {
   costOfProperty: 0,
+  actualMortgageAmount: 0,
   cashDown: 0,
   cashDownPercentage: 0,
   interestRate: 0,
@@ -21,12 +22,14 @@ let initialState: SimulationState = {
 
   initialValue: 0,
   income: 0,
+  aditionnalIncomes: [],
   expenses: 0,
   houseInsurance: 0,
   houseInsuranceTaxes: 0,
   municipalTaxes: 0,
   scollarTaxes: 0,
   energyCost: 0,
+  aditionnalOutcome: [],
   simulationTable: [],
 
   beginingDate: new Date()
@@ -35,6 +38,9 @@ let initialState: SimulationState = {
 if (infoInLocalstorage) {
   initialState = JSON.parse(infoInLocalstorage);
 
+  if (initialState.actualMortgageAmount === undefined) {
+    initialState.actualMortgageAmount = 0;
+  }
   if (initialState.initialValue === undefined) {
     initialState.initialValue = 0;
   }
@@ -65,6 +71,12 @@ if (infoInLocalstorage) {
   if (initialState.energyCost === undefined) {
     initialState.energyCost = 0;
   }
+  if (initialState.aditionnalIncomes === undefined) {
+    initialState.aditionnalIncomes = [];
+  }
+  if (initialState.aditionnalOutcome === undefined) {
+    initialState.aditionnalOutcome = [];
+  }
   initialState.insuranceSCHL = CalculateSCHL(initialState);
   initialState.simulationTable = generateSimulation(initialState);
 }
@@ -72,7 +84,7 @@ if (infoInLocalstorage) {
 const updateMortgagePaymentAmount = (state: SimulationState) => {
   state.paymentTable = [];
 
-  let balance = state.costOfProperty + state.insuranceSCHL - state.cashDown;
+  let balance = (state.costOfProperty == 0 ? state.actualMortgageAmount : state.costOfProperty) + state.insuranceSCHL - state.cashDown;
 
   const tauxHypothecaire = state.interestRate / 100;
   const interestRate = tauxHypothecaire / 12;
@@ -114,13 +126,18 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
   for (let i = 0; i < nbMount; i++) {
     let previousValue = 0;
     if (i === 0) {
-      let schl = 0;
-
-      if (state.cashDownPercentage < 20) {
-        schl = state.insuranceSCHL + (state.insuranceSCHL * InsuranceSCHLTaxes);
+      if (state.actualMortgageAmount > 0) {
+        previousValue = state.initialValue;
       }
+      else {
+        let schl = 0;
 
-      previousValue = state.initialValue - state.cashDown - schl;
+        if (state.cashDownPercentage < 20) {
+          schl = state.insuranceSCHL + (state.insuranceSCHL * InsuranceSCHLTaxes);
+        }
+
+        previousValue = state.initialValue - state.cashDown - schl;
+      }
     }
     else {
       previousValue = simulationTable[i - 1].solde;
@@ -176,12 +193,18 @@ export interface SetCostOfPropertyProps {
   percentLock: boolean;
 }
 
+export interface SetActualMortageAmountProps {
+  actualMortgageAmount: number;
+  actualMortageIsLock: boolean;
+}
+
 export const simulationSlice = createSlice({
   name: 'simulator',
   initialState,
   reducers: {
     setCostOfProperty: (state: SimulationState, action: PayloadAction<SetCostOfPropertyProps>) => {
       state.costOfProperty = action.payload.costOfProperty;
+      state.actualMortgageAmount = 0;
       if (action.payload.percentLock) {
         state.cashDown = state.costOfProperty * state.cashDownPercentage / 100;
       }
@@ -191,6 +214,14 @@ export const simulationSlice = createSlice({
       state.insuranceSCHL = CalculateSCHL(state);
       state.paymentAmount = updateMortgagePaymentAmount(state);
       state.simulationTable = generateSimulation(state);
+    },
+    setActuelMortgageAmount: (state: SimulationState, action: PayloadAction<SetActualMortageAmountProps>) => {
+      state.actualMortgageAmount = action.payload.actualMortgageAmount;
+      state.costOfProperty = 0;
+      state.cashDown = 0;
+      state.paymentAmount = updateMortgagePaymentAmount(state);
+      state.insuranceSCHL = 0;
+      state.simulationTable = generateSimulation(state)
     },
     setCashdown: (state: SimulationState, action: PayloadAction<number>) => {
       state.cashDown = action.payload;
@@ -253,6 +284,7 @@ export const simulationSlice = createSlice({
 
 export const {
   setCostOfProperty,
+  setActuelMortgageAmount,
   setCashdown,
   setCashdownPercentage,
   setInterestRate,

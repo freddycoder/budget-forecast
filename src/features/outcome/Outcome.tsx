@@ -61,6 +61,17 @@ export const Outcome = () => {
                         onChange={(e) => { dispatch(setEnergyCost(parseInt(e.target.value))) }}
                         ></InputField>
                 </div>
+
+                <div className={styles.row}>
+                    <h5>{t('DepenseAdditionnel')}</h5>
+                </div>
+                <div className={styles.row}>
+                    <ul>
+                        {simulation.aditionnalOutcome.map((income, index) => {
+                            return <li key={index}>{income.description} - {income.amount}$</li>
+                        })}
+                    </ul>
+                </div>
             </div>
         </div>
     )

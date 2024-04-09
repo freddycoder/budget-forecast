@@ -29,6 +29,16 @@ export const Income = () => {
                         onChange={(e) => { dispatch(setInitialValue(parseInt(e.target.value))) }}
                         ></InputField>
                 </div>
+                <div className={styles.row}>
+                    <h5>{t('RevenueAdditionnel')}</h5>
+                </div>
+                <div className={styles.row}>
+                    <ul>
+                        {simulation.aditionnalIncomes.map((income, index) => {
+                            return <li key={index}>{income.description} - {income.amount}</li>
+                        })}
+                    </ul>
+                </div>
             </div>
         </div>
     )

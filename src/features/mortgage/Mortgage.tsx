@@ -7,7 +7,8 @@ import {
   setCashdown,
   setCashdownPercentage,
   setInterestRate,
-  setTerm
+  setTerm,
+  setActuelMortgageAmount
 } from '../simulationSlice';
 import { format } from '../../utils/formatUtil';
 import { useTranslation } from 'react-i18next';
@@ -21,10 +22,16 @@ export function Mortgage() {
   const { t } = useTranslation();
   const lockFromStorage = localStorage.getItem('lock');
   const [percentLock, setPercentLock] = useState(lockFromStorage === 'true' || lockFromStorage === null);
+  const [mortageAmountLock, setMortageAmountLock] = useState(lockFromStorage === 'true' || lockFromStorage === null);
 
   const switchLock = (args: any) => {
     setPercentLock(!percentLock);
     localStorage.setItem('lock', String(!percentLock));
+  }
+
+  const switchLockMortage = (args: any) => {
+    setMortageAmountLock(!mortageAmountLock);
+    localStorage.setItem('lock', String(!mortageAmountLock));
   }
 
   return (
@@ -35,7 +42,20 @@ export function Mortgage() {
               <InputField label={t('CostOfProperty')}
                 ariaLabel={t('CostOfProperty')}
                 value={simulation.costOfProperty}
-                onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))} />
+                onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))}
+                lockable={true}
+                onLock={(args) => switchLockMortage(args)}
+                isLock={mortageAmountLock} />
+            </div>
+            <div className={styles.row}>
+              <InputField label={t('ActualMortageAmount')}
+                ariaLabel={t('ActualMortageAmount')}
+                value={simulation.actualMortgageAmount}
+                onChange={(e) => dispatch(setActuelMortgageAmount({ actualMortgageAmount: parseInt(e.target.value), actualMortageIsLock: mortageAmountLock}))}
+                lockable={true}
+                onLock={(args) => switchLockMortage(args)}
+                isLock={!mortageAmountLock}
+              />
             </div>
             <div className={styles.row}>
               <InputField label={t('CashDown')}
@@ -79,7 +99,7 @@ export function Mortgage() {
             <MortgageChart />
           </div>
         </div>
-        {simulation.cashDownPercentage < 20 ? (<div className={styles.row}>
+        {simulation.cashDownPercentage < 20 && !mortageAmountLock ? (<div className={styles.row}>
           <InsuranceSCHL />
         </div>) : undefined}
         <div className={styles.row}>
