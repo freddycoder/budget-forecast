@@ -3,6 +3,7 @@
     "CommentCalculerPret": "Comment calculer un prêt",
 
     "CostOfProperty": "Coût de la propriété",
+    "ActualMortageAmount": "Valeur d'hypothèque actuelle",
     "CashDown": "Mise de fond",
     "CashDownPercentage": "Pourcentage de mise de fond",
     "InterestRate": "Taux d'intérêt",
@@ -18,7 +19,9 @@
     "MortgagePayment": "Paiement hypothécaire",
     "Hypotheque": "Hypothèque",
     "Depense": "Dépenses",
+    "DepenseAdditionnel": "Dépenses additionnelles",
     "Revenue": "Revenus",
+    "RevenueAdditionnel": "Revenus additionnels",
     "Simulation": "Simulation",
     "InitialValue": "Montant initial",
 
