@@ -55,5 +55,17 @@
 
     "MunicipalTaxes": "Taxe municipal",
     "SchoolTaxes": "Taxe scolaire",
-    "EnergyCost": "Coût d'énergie"
+    "EnergyCost": "Coût d'énergie",
+
+
+
+    "DepenseTooltip": "Moyenne des dépenses mensuelles. Le montant inscrit ici ne doit pas inclure les dépenses de l'hypothèque ou des autres cases de dépenses.",
+    "HouseInsuranceTooltip": "Coût de l'assurance-maison par mois.",
+    "HouseInsuranceTaxesTooltip": "Taxes d'assurance-maison par mois.",
+    "MunicipalTaxesTooltip": "Taxe municipal par année.",
+    "SchoolTaxesTooltip": "Taxe scolaire par année.",
+    "EnergyCostTooltip": "Coût d'énergie par mois.",
+
+    "RevenueTooltip": "Moyenne des revenus mensuels.",
+    "InitialValueTooltip": "Montant d'argent initial disponible dans vos comptes."
 }

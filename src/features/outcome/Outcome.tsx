@@ -19,6 +19,7 @@ export const Outcome = () => {
                         ariaLabel={t('Depense')}
                         value={simulation.expenses}
                         onChange={(e) => { dispatch(setOutcome(parseInt(e.target.value))) }}
+                        tooltip={t('DepenseTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -27,6 +28,7 @@ export const Outcome = () => {
                         ariaLabel={t('HouseInsurance')}
                         value={simulation.houseInsurance}
                         onChange={(e) => { dispatch(setHouseInsurance(parseFloat(e.target.value))) }}
+                        tooltip={t('HouseInsuranceTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -35,6 +37,7 @@ export const Outcome = () => {
                         ariaLabel={t('HouseInsuranceTaxes')}
                         value={simulation.houseInsuranceTaxes}
                         onChange={(e) => { dispatch(setHouseInsuranceTaxes(parseFloat(e.target.value))) }}
+                        tooltip={t('HouseInsuranceTaxesTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -43,6 +46,7 @@ export const Outcome = () => {
                         ariaLabel={t('MunicipalTaxes')}
                         value={simulation.municipalTaxes}
                         onChange={(e) => { dispatch(setMinucipalTaxes(parseInt(e.target.value))) }}
+                        tooltip={t('MunicipalTaxesTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -51,6 +55,7 @@ export const Outcome = () => {
                         ariaLabel={t('SchoolTaxes')}
                         value={simulation.scollarTaxes}
                         onChange={(e) => { dispatch(setScollarTaxes(parseInt(e.target.value))) }}
+                        tooltip={t('SchoolTaxesTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -59,6 +64,7 @@ export const Outcome = () => {
                         ariaLabel={t('EnergyCost')}
                         value={simulation.energyCost}
                         onChange={(e) => { dispatch(setEnergyCost(parseInt(e.target.value))) }}
+                        tooltip={t('EnergyCostTooltip')}
                         ></InputField>
                 </div>
 

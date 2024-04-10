@@ -52,5 +52,17 @@
 
     "MunicipalTaxes": "Municipal taxes",
     "SchoolTaxes": "School taxes",
-    "EnergyCost": "Energy cost"
+    "EnergyCost": "Energy cost",
+
+
+
+    "DepenseTooltip": "Expenses are all the money spend during a mounth that is not in the mortage or orther expenses boxes.",
+    "HouseInsuranceTooltip": "Monthly insurance cost amount for the house.",
+    "HouseInsuranceTaxesTooltip": "Monthly insurance taxe cost amount for the house.",
+    "MunicipalTaxesTooltip": "Annual municipal taxes cost amount.",
+    "SchoolTaxesTooltip": "Annual school taxes cost amount.",
+    "EnergyCostTooltip": "Monthly energy cost amount.",
+
+    "RevenueTooltip": "Income is all the money that you receive during a mounth.",
+    "InitialValueTooltip": "Initial value is the amount of money that you have at the beginning of the simulation."
 }

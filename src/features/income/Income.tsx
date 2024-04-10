@@ -19,6 +19,7 @@ export const Income = () => {
                         ariaLabel={t('Revenue')}
                         value={simulation.income}
                         onChange={(e) => { dispatch(setIncome(parseInt(e.target.value))) }}
+                        tooltip={t('RevenueTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -27,6 +28,7 @@ export const Income = () => {
                         ariaLabel={t('InitialValue')}
                         value={simulation.initialValue}
                         onChange={(e) => { dispatch(setInitialValue(parseInt(e.target.value))) }}
+                        tooltip={t('InitialValueTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>

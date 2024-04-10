@@ -9,12 +9,13 @@ interface InputFieldProps {
     lockable?: boolean
     isLock?: boolean
     onLock?: React.InputHTMLAttributes<HTMLInputElement>['onChange']
+    tooltip?: string
 }
 
 export const InputField = (props: InputFieldProps) => {
     return (
         <div>
-            <span>{props.label}: </span>
+            <span title={props.tooltip}>{props.label}: </span>
             <input
                 className={styles.textbox}
                 aria-label={props.ariaLabel}
