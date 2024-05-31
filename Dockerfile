@@ -5,6 +5,6 @@ RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm run build
 
-FROM nginx:1.25.5-alpine
+FROM nginx:1.26.1-alpine
 COPY --from=builder /app/dist /etc/nginx/html/budget-forecast
 COPY nginx/.default.conf /etc/nginx/conf.d/default.conf
