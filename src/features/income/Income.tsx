@@ -15,6 +15,7 @@ export const Income = () => {
             <div className={styles.box}>
                 <div className={styles.row}>
                     <InputField 
+                        type="number"
                         label={t('Revenue')}
                         ariaLabel={t('Revenue')}
                         value={simulation.income}
@@ -24,6 +25,7 @@ export const Income = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField
+                        type="number"
                         label={t('InitialValue')}
                         ariaLabel={t('InitialValue')}
                         value={simulation.initialValue}
@@ -37,7 +39,7 @@ export const Income = () => {
                 <div className={styles.row}>
                     <ul>
                         {simulation.aditionnalIncomes.map((income, index) => {
-                            return <li key={index}>{income.description} - {income.amount}</li>
+                            return <li key={income.description}>{income.description} - {income.amount}</li>
                         })}
                     </ul>
                 </div>

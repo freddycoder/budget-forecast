@@ -40,6 +40,7 @@ export function Mortgage() {
           <div className={styles.box}>
             <div className={styles.row}>
               <InputField label={t('CostOfProperty')}
+                type='number'
                 ariaLabel={t('CostOfProperty')}
                 value={simulation.costOfProperty}
                 onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))}
@@ -49,6 +50,7 @@ export function Mortgage() {
             </div>
             <div className={styles.row}>
               <InputField label={t('ActualMortageAmount')}
+                type='number'
                 ariaLabel={t('ActualMortageAmount')}
                 value={simulation.actualMortgageAmount}
                 onChange={(e) => dispatch(setActuelMortgageAmount({ actualMortgageAmount: parseInt(e.target.value), actualMortageIsLock: mortageAmountLock}))}
@@ -59,6 +61,7 @@ export function Mortgage() {
             </div>
             <div className={styles.row}>
               <InputField label={t('CashDown')}
+                type='number'
                 ariaLabel={t('CashDown')}
                 value={simulation.cashDown}
                 onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))}
@@ -68,6 +71,7 @@ export function Mortgage() {
             </div>
             <div className={styles.row}>
               <InputField label={t('CashDownPercentage')}
+                type='number'
                 ariaLabel={t('CashDownPercentage')}
                 value={simulation.cashDownPercentage}
                 onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))}
@@ -77,12 +81,15 @@ export function Mortgage() {
             </div>
             <div className={styles.row}>
               <InputField label={t('InterestRate')}
+                type="float"
                 ariaLabel={t('InterestRate')}
                 value={simulation.interestRate}
                 onChange={(e) => dispatch(setInterestRate(parseFloat(e.target.value)))} />
             </div>
             <div className={styles.row}>
               <InputField label={t('Term')}
+                type='number'
+                tooltip={t('TermInformation')}
                 ariaLabel={t('Term')}
                 value={simulation.term}
                 onChange={(e) => dispatch(setTerm(parseInt(e.target.value)))} />

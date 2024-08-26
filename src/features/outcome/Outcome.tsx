@@ -15,6 +15,7 @@ export const Outcome = () => {
             <div className={styles.box}>
                 <div className={styles.row}>
                     <InputField 
+                        type="number"
                         label={t('Depense')}
                         ariaLabel={t('Depense')}
                         value={simulation.expenses}
@@ -24,6 +25,7 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField 
+                        type="float"
                         label={t('HouseInsurance')}
                         ariaLabel={t('HouseInsurance')}
                         value={simulation.houseInsurance}
@@ -33,6 +35,7 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField 
+                        type="float"
                         label={t('HouseInsuranceTaxes')}
                         ariaLabel={t('HouseInsuranceTaxes')}
                         value={simulation.houseInsuranceTaxes}
@@ -42,6 +45,7 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField
+                        type="number"
                         label={t('MunicipalTaxes')}
                         ariaLabel={t('MunicipalTaxes')}
                         value={simulation.municipalTaxes}
@@ -51,6 +55,7 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField
+                        type="number"
                         label={t('SchoolTaxes')}
                         ariaLabel={t('SchoolTaxes')}
                         value={simulation.scollarTaxes}
@@ -60,6 +65,7 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField
+                        type="number"
                         label={t('EnergyCost')}
                         ariaLabel={t('EnergyCost')}
                         value={simulation.energyCost}
@@ -74,7 +80,7 @@ export const Outcome = () => {
                 <div className={styles.row}>
                     <ul>
                         {simulation.aditionnalOutcome.map((income, index) => {
-                            return <li key={index}>{income.description} - {income.amount}$</li>
+                            return <li key={income.description}>{income.description} - {income.amount}$</li>
                         })}
                     </ul>
                 </div>

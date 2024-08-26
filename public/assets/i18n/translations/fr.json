@@ -7,7 +7,8 @@
     "CashDown": "Mise de fond",
     "CashDownPercentage": "Pourcentage de mise de fond",
     "InterestRate": "Taux d'intérêt",
-    "Term": "Durée",
+    "Term": "Durée en année",
+    "TermInformation": "Durée en année",
     "PaymentAmount": "Montant des paiements",
 
     "Month": "Mois",

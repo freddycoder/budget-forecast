@@ -96,7 +96,7 @@ const updateMortgagePaymentAmount = (state: SimulationState) => {
   const den = 1 - Math.pow(1 + tauxHypothecaire / 12, - totalNumberOfPayment);
   state.paymentAmount = num / den
 
-  for (var i = 0; i < totalNumberOfPayment; i++) {
+  for (let i = 0; i < totalNumberOfPayment; i++) {
     if (i > 0) {
       balance = state.paymentTable[i - 1].balance;
     }

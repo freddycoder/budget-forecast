@@ -7,7 +7,8 @@
     "CashDown": "Cash down",
     "CashDownPercentage": "Cash down percentage",
     "InterestRate": "Interest rate",
-    "Term": "Term",
+    "Term": "Term in years",
+    "TermInformation": "Term in years",
     "PaymentAmount": "Payment amount",
 
     "Month": "Month",
