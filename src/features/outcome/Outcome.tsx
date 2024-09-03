@@ -45,31 +45,31 @@ export const Outcome = () => {
                 </div>
                 <div className={styles.row}>
                     <InputField
-                        type="number"
+                        type="float"
                         label={t('MunicipalTaxes')}
                         ariaLabel={t('MunicipalTaxes')}
                         value={simulation.municipalTaxes}
-                        onChange={(e) => { dispatch(setMinucipalTaxes(parseInt(e.target.value))) }}
+                        onChange={(e) => { dispatch(setMinucipalTaxes(parseFloat(e.target.value))) }}
                         tooltip={t('MunicipalTaxesTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
                     <InputField
-                        type="number"
+                        type="float"
                         label={t('SchoolTaxes')}
                         ariaLabel={t('SchoolTaxes')}
                         value={simulation.scollarTaxes}
-                        onChange={(e) => { dispatch(setScollarTaxes(parseInt(e.target.value))) }}
+                        onChange={(e) => { dispatch(setScollarTaxes(parseFloat(e.target.value))) }}
                         tooltip={t('SchoolTaxesTooltip')}
                         ></InputField>
                 </div>
                 <div className={styles.row}>
                     <InputField
-                        type="number"
+                        type="float"
                         label={t('EnergyCost')}
                         ariaLabel={t('EnergyCost')}
                         value={simulation.energyCost}
-                        onChange={(e) => { dispatch(setEnergyCost(parseInt(e.target.value))) }}
+                        onChange={(e) => { dispatch(setEnergyCost(parseFloat(e.target.value))) }}
                         tooltip={t('EnergyCostTooltip')}
                         ></InputField>
                 </div>
