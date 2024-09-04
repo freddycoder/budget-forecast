@@ -46,6 +46,7 @@ export function Mortgage() {
                 onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))}
                 lockable={true}
                 onLock={(args) => switchLockMortage(args)}
+                symbol='$'
                 isLock={mortageAmountLock} />
             </div>
             <div className={styles.row}>
@@ -56,6 +57,7 @@ export function Mortgage() {
                 onChange={(e) => dispatch(setActuelMortgageAmount({ actualMortgageAmount: parseInt(e.target.value), actualMortageIsLock: mortageAmountLock}))}
                 lockable={true}
                 onLock={(args) => switchLockMortage(args)}
+                symbol='$'
                 isLock={!mortageAmountLock}
               />
             </div>
@@ -67,6 +69,7 @@ export function Mortgage() {
                 onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))}
                 lockable={true} 
                 onLock={(args) => switchLock(args)}
+                symbol='$'
                 isLock={percentLock} />
             </div>
             <div className={styles.row}>
@@ -77,6 +80,7 @@ export function Mortgage() {
                 onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))}
                 lockable={true}
                 onLock={(args) => switchLock(args)}
+                symbol='%'
                 isLock={!percentLock} />
             </div>
             <div className={styles.row}>
@@ -84,6 +88,7 @@ export function Mortgage() {
                 type="float"
                 ariaLabel={t('InterestRate')}
                 value={simulation.interestRate}
+                symbol='%'
                 onChange={(e) => dispatch(setInterestRate(parseFloat(e.target.value)))} />
             </div>
             <div className={styles.row}>
@@ -97,6 +102,7 @@ export function Mortgage() {
             <div className={styles.row}>
               <InputField label={t('PaymentAmount')}
                 ariaLabel={t('PaymentAmount')}
+                symbol='$'
                 value={format(simulation.paymentAmount)}
                 onChange={(e) => { return; }} 
                 disabled/>

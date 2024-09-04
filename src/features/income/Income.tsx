@@ -21,6 +21,7 @@ export const Income = () => {
                         value={simulation.income}
                         onChange={(e) => { dispatch(setIncome(parseInt(e.target.value))) }}
                         tooltip={t('RevenueTooltip')}
+                        symbol="$"
                         ></InputField>
                 </div>
                 <div className={styles.row}>
@@ -31,6 +32,7 @@ export const Income = () => {
                         value={simulation.initialValue}
                         onChange={(e) => { dispatch(setInitialValue(parseInt(e.target.value))) }}
                         tooltip={t('InitialValueTooltip')}
+                        symbol="$"
                         ></InputField>
                 </div>
                 <div className={styles.row}>

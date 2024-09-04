@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, useState } from 'react';
+import { useState } from 'react';
 import styles from './InputField.module.css';
 
 interface InputFieldProps {
@@ -12,6 +12,7 @@ interface InputFieldProps {
     onLock?: React.InputHTMLAttributes<HTMLInputElement>['onChange']
     tooltip?: string
     type?: "text" | "number" | "float"
+    symbol?: string
 }
 
 export const InputField = (props: InputFieldProps) => {
@@ -77,7 +78,7 @@ export const InputField = (props: InputFieldProps) => {
     const canParseB = canParse(state);
 
     return (
-        <div>
+        <div className={styles.inputContainer}>
             <span title={props.tooltip}>{props.label}: </span>
             <input
                 title={props.type}
@@ -89,6 +90,7 @@ export const InputField = (props: InputFieldProps) => {
                 disabled={props.disabled || props.isLock}
                 style={{ border: canParseB ? '' : '4px solid #FF0000', borderRadius: canParseB ? '' : '1px' }}
             />
+            {props.symbol && <span className={styles.symbol}>{props.symbol}</span>}
 
             {props.lockable && 
                 <input type="checkbox" 

@@ -1,7 +1,24 @@
 .textbox {
     font-size: 32px;
     padding: 2px;
-    width: 240px;
+    width: 200px;
     text-align: center;
     margin-right: 4px;
+    padding-right: 20px; /* Adjust based on the width of the symbol */
+    padding-left: 20px;
+    position: relative; /* Ensure the symbol is positioned relative to the input */
+}
+
+.inputContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.symbol {
+    font-size: 32px;
+    position: absolute;
+    right: 0px; /* Adjust based on the desired position */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent the symbol from blocking input interactions */
 }
