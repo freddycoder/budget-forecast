@@ -148,15 +148,18 @@ function generateSimulation(state: SimulationState): SimulationStep[] {
       mortgagePayment = state.paymentTable[i].paymentAmount;
     }
 
-    let totalExpenses = state.expenses + 
-                       (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100))) +
-                        state.energyCost;
+    let totalExpenses = state.expenses +
+      (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100))) +
+      state.aditionnalOutcome.reduce((total, outcome) => total + outcome.amount, 0) +
+      state.energyCost;
 
     if (i > 0 && i % 12 === 0) {
       totalExpenses += state.municipalTaxes + state.scollarTaxes;
     }
 
-    const diff = state.income - totalExpenses - mortgagePayment
+    const diff = state.income +
+      state.aditionnalIncomes.reduce((total, income) => total + income.amount, 0) -
+      totalExpenses - mortgagePayment
 
     simulationTable.push({
       mount: i + 1,
@@ -278,7 +281,49 @@ export const simulationSlice = createSlice({
     setEnergyCost: (state: SimulationState, action: PayloadAction<number>) => {
       state.energyCost = action.payload;
       state.simulationTable = generateSimulation(state)
-    }
+    },
+    addAdditionalOutcome: (state: SimulationState) => {
+      state.aditionnalOutcome.push({ amount: 0, description: "", frequency: 0, interest: 0 });
+      state.simulationTable = generateSimulation(state);
+    },
+    addAdditionalIncome: (state: SimulationState) => {
+      state.aditionnalIncomes.push({ amount: 0, description: "", frequency: 0, interest: 0 });
+      state.simulationTable = generateSimulation(state);
+    },
+    removeAdditionalIncome: (state: SimulationState, action: PayloadAction<number>) => {
+      state.aditionnalIncomes.splice(action.payload, 1);
+      state.simulationTable = generateSimulation(state);
+    },
+    removeAdditionalOutcome: (state: SimulationState, action: PayloadAction<number>) => {
+      state.aditionnalOutcome.splice(action.payload, 1);
+      state.simulationTable = generateSimulation(state);
+    },
+    updateAdditionalOutcomeDescription: (state: SimulationState, action: PayloadAction<{ index: number; description: string }>) => {
+      const { index, description } = action.payload;
+      if (state.aditionnalOutcome[index]) {
+        state.aditionnalOutcome[index].description = description;
+      }
+    },
+    updateAdditionalIncomeDescription: (state: SimulationState, action: PayloadAction<{ index: number; description: string }>) => {
+      const { index, description } = action.payload;
+      if (state.aditionnalIncomes[index]) {
+        state.aditionnalIncomes[index].description = description;
+      }
+    },
+    updateAdditionalOutcomeAmount: (state: SimulationState, action: PayloadAction<{ index: number; amount: number }>) => {
+      const { index, amount } = action.payload;
+      if (state.aditionnalOutcome[index]) {
+        state.aditionnalOutcome[index].amount = amount;
+        state.simulationTable = generateSimulation(state);
+      }
+    },
+    updateAdditionalIncomeAmount: (state: SimulationState, action: PayloadAction<{ index: number; amount: number }>) => {
+      const { index, amount } = action.payload;
+      if (state.aditionnalIncomes[index]) {
+        state.aditionnalIncomes[index].amount = amount;
+        state.simulationTable = generateSimulation(state);
+      }
+    },
   },
 });
 
@@ -296,7 +341,16 @@ export const {
   setHouseInsuranceTaxes,
   setMinucipalTaxes,
   setScollarTaxes,
-  setEnergyCost } = simulationSlice.actions;
+  setEnergyCost,
+  addAdditionalOutcome,
+  addAdditionalIncome,
+  removeAdditionalIncome,
+  removeAdditionalOutcome,
+  updateAdditionalOutcomeDescription,
+  updateAdditionalIncomeDescription,
+  updateAdditionalOutcomeAmount,
+  updateAdditionalIncomeAmount
+} = simulationSlice.actions;
 
 export const selectSimulation = (state: RootState) => state.simulation;
 

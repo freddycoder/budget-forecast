@@ -1,7 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { InputField } from "../../components/InputField"
-import { selectSimulation, setIncome, setInitialValue } from "../simulationSlice";
+import { 
+    selectSimulation, 
+    setIncome, 
+    setInitialValue, 
+    addAdditionalIncome, 
+    removeAdditionalIncome,
+    updateAdditionalIncomeDescription,
+    updateAdditionalIncomeAmount
+} from "../simulationSlice";
 import styles from '../Simulation.module.css';
 
 export const Income = () => {
@@ -39,11 +47,32 @@ export const Income = () => {
                     <h5>{t('RevenueAdditionnel')}</h5>
                 </div>
                 <div className={styles.row}>
-                    <ul>
+                    <button className={styles.button} onClick={() => { dispatch(addAdditionalIncome()) }}>{t('AddIncome')}</button>
+                </div>
+                <div className={styles.row}>
+                    <ol>
                         {simulation.aditionnalIncomes.map((income, index) => {
-                            return <li key={income.description}>{income.description} - {income.amount}</li>
+                            return <li key={index}>
+                                <InputField
+                                    type="text"
+                                    label={t('Description')}
+                                    ariaLabel={t('Description')}
+                                    value={income.description}
+                                    onChange={(e) => { dispatch(updateAdditionalIncomeDescription({ index: index, description: e.target.value })) }}
+                                ></InputField>
+                                <InputField
+                                    type="number"
+                                    label={t('Amount')}
+                                    ariaLabel={t('Amount')}
+                                    value={income.amount}
+                                    onChange={(e) => { dispatch(updateAdditionalIncomeAmount({ index: index, amount: parseInt(e.target.value) })) }}
+                                    symbol="$"
+                                ></InputField>
+                                <button 
+                                    className={`${styles.button} ${styles['button-danger']}`} 
+                                    onClick={() => { dispatch(removeAdditionalIncome(index)) }}>{t('Remove')}</button></li>
                         })}
-                    </ul>
+                    </ol>
                 </div>
             </div>
         </div>

@@ -68,5 +68,8 @@
     "EnergyCostTooltip": "Coût d'énergie par mois.",
 
     "RevenueTooltip": "Moyenne des revenus mensuels.",
-    "InitialValueTooltip": "Montant d'argent initial disponible dans vos comptes."
+    "InitialValueTooltip": "Montant d'argent initial disponible dans vos comptes.",
+
+    "AddIncome": "Ajouter un revenu",
+    "AddOutcome": "Ajouter une dépense"
 }

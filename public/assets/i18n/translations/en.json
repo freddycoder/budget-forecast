@@ -65,5 +65,8 @@
     "EnergyCostTooltip": "Monthly energy cost amount.",
 
     "RevenueTooltip": "Income is all the money that you receive during a mounth.",
-    "InitialValueTooltip": "Initial value is the amount of money that you have at the beginning of the simulation."
+    "InitialValueTooltip": "Initial value is the amount of money that you have at the beginning of the simulation.",
+
+    "AddIncome": "Add income",
+    "AddOutcome": "Add outcome"
 }

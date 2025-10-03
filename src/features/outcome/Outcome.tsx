@@ -1,7 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { InputField } from "../../components/InputField"
-import { selectSimulation, setEnergyCost, setHouseInsurance, setHouseInsuranceTaxes, setMinucipalTaxes, setOutcome, setScollarTaxes } from "../simulationSlice";
+import { 
+    selectSimulation, 
+    setEnergyCost, 
+    setHouseInsurance, 
+    setHouseInsuranceTaxes, 
+    setMinucipalTaxes, 
+    setOutcome, 
+    setScollarTaxes,
+    addAdditionalOutcome, 
+    removeAdditionalOutcome,
+    updateAdditionalOutcomeDescription,
+    updateAdditionalOutcomeAmount } from "../simulationSlice";
 import styles from '../Simulation.module.css';
 
 export const Outcome = () => {
@@ -84,11 +95,32 @@ export const Outcome = () => {
                     <h5>{t('DepenseAdditionnel')}</h5>
                 </div>
                 <div className={styles.row}>
-                    <ul>
+                    <button className={styles.button} onClick={() => { dispatch(addAdditionalOutcome()) }}>{t('AddOutcome')}</button>
+                </div>
+                <div className={styles.row}>
+                    <ol>
                         {simulation.aditionnalOutcome.map((income, index) => {
-                            return <li key={income.description}>{income.description} - {income.amount}$</li>
+                            return <li key={index}>
+                                <InputField
+                                    type="text"
+                                    label={t('Description')}
+                                    ariaLabel={t('Description')}
+                                    value={income.description}
+                                    onChange={(e) => { dispatch(updateAdditionalOutcomeDescription({ index, description: e.target.value })) }}
+                                />
+                                <InputField
+                                    type="number"
+                                    label={t('Amount')}
+                                    ariaLabel={t('Amount')}
+                                    value={income.amount}
+                                    onChange={(e) => { dispatch(updateAdditionalOutcomeAmount({ index, amount: parseInt(e.target.value) })) }}
+                                    symbol="$"
+                                />
+                                <button 
+                                    className={`${styles.button} ${styles['button-danger']}`} 
+                                    onClick={() => { dispatch(removeAdditionalOutcome(index)) }}>{t('Remove')}</button></li>
                         })}
-                    </ul>
+                    </ol>
                 </div>
             </div>
         </div>

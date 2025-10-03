@@ -68,6 +68,11 @@
   background-color: rgba(112, 76, 182, 0.2);
 }
 
+.button-danger {
+  color: #b00020;
+  background-color: rgba(176, 0, 32, 0.1);
+}
+
 .asyncButton {
   position: relative;
 }
