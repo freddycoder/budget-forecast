@@ -107,7 +107,7 @@ export const Outcome = () => {
                                     label={t('Description')}
                                     ariaLabel={t('Description')}
                                     value={income.description}
-                                    onChange={(e) => { dispatch(updateAdditionalOutcomeDescription({ index, description: e.target.value })) }}
+                                    onBlur={(e) => { dispatch(updateAdditionalOutcomeDescription({ index, description: e.target.value })) }}
                                 />
                                 <InputField
                                     type="number"

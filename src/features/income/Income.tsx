@@ -59,8 +59,8 @@ export const Income = () => {
                                     label={t('Description')}
                                     ariaLabel={t('Description')}
                                     value={income.description}
-                                    onChange={(e) => { dispatch(updateAdditionalIncomeDescription({ index: index, description: e.target.value })) }}
-                                ></InputField>
+                                    onBlur={(e) => { dispatch(updateAdditionalIncomeDescription({ index: index, description: e.target.value })) }}
+                                />
                                 <InputField
                                     type="number"
                                     label={t('Amount')}
@@ -68,7 +68,7 @@ export const Income = () => {
                                     value={income.amount}
                                     onChange={(e) => { dispatch(updateAdditionalIncomeAmount({ index: index, amount: Number.parseInt(e.target.value) })) }}
                                     symbol="$"
-                                ></InputField>
+                                />
                                 <InputField
                                     type="number"
                                     label={t('NumberOfMonths')}

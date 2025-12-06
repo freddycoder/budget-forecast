@@ -22,3 +22,32 @@
     transform: translateY(-50%);
     pointer-events: none; /* Prevent the symbol from blocking input interactions */
 }
+
+.tooltipWrapper {
+    display: inline-block;
+    position: relative;
+    margin-left: 4px;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    margin-left: -100px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.infoIcon:focus .tooltip,
+.infoIcon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

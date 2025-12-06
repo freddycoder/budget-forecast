@@ -1,9 +1,9 @@
-interface liHrefPros {
+interface LiHrefPros {
     href: string;
     text: string;
 }
 
-export function LiHref(props: liHrefPros) {
+export function LiHref(props: Readonly<LiHrefPros>) {
     return (
         <li>
             <a href={props.href} target="_">

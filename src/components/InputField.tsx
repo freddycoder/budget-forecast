@@ -4,7 +4,8 @@ import styles from './InputField.module.css';
 interface InputFieldProps {
     label: string
     value: string | number
-    onChange: React.InputHTMLAttributes<HTMLInputElement>['onChange']
+    onChange?: React.InputHTMLAttributes<HTMLInputElement>['onChange']
+    onBlur?: React.InputHTMLAttributes<HTMLInputElement>['onBlur']
     ariaLabel: string | undefined
     disabled?: boolean
     lockable?: boolean
@@ -32,8 +33,19 @@ export const InputField = (props: InputFieldProps) => {
             catch {
                 console.log("Error parsing number");
             }
-        } else if (props.onChange != null) {
-            props.onChange(event);
+        }
+        else if (props.type === "text") {
+            console.log("Text input change, do nothing special");
+            // do nothing special for text
+        }
+        else if (props.onChange != null) {
+            console.log("Calling onChange for type other than number");
+            try {
+                props.onChange(event);
+            }
+            catch (error) {
+                console.log("Error in onChange", error);
+            }
         }
     }
 
@@ -41,34 +53,10 @@ export const InputField = (props: InputFieldProps) => {
         console.log("Can parse: " + value);
         let canParseValue = false;
         if (props.type === "number") {
-            console.log("Validating number: " + value);
-            if (value !== undefined) {
-                canParseValue = true;
-                // validate that the string does not contains any caracter that is not a number
-                for (let i = 0; i < value.toString().length; i++) {
-                    if (isNaN(Number.parseInt(value.toString()[i])) && value.toString()[i] !== "-") {
-                        canParseValue = false;
-                        break;
-                    }
-                    else {
-                        canParseValue = true;
-                    }
-                }
-            }
+            canParseValue = canParseNumber(value);
         }
         else if (props.type === "float") {
-            console.log("Validating float: " + value);
-            canParseValue = true;
-            // validate that the string does not contains any caracter that is not a number
-            for (let i = 0; i < value.toString().length; i++) {
-                if (isNaN(parseInt(value.toString()[i])) && value.toString()[i] !== "." && value.toString()[i] !== "-") {
-                    canParseValue = false;
-                    break;
-                }
-                else {
-                    canParseValue = true;
-                }
-            }
+            canParseValue = canParseFloat(value);
         }
         else {
             console.log("else: can parse = true ");
@@ -84,7 +72,13 @@ export const InputField = (props: InputFieldProps) => {
 
     return (
         <div className={styles.inputContainer}>
-            <span title={props.tooltip}>{props.label}: </span>
+            <span className={styles.label} title={props.tooltip}>{props.label}:</span>
+            {props.tooltip && (
+                <span className={styles.tooltipWrapper}>
+                    <span className={styles.infoIcon}>ⓘ<span className={styles.tooltip}>{props.tooltip}</span>
+                    </span>
+                </span>
+            )}
             <input
                 title={props.type}
                 type={"text"}
@@ -92,6 +86,7 @@ export const InputField = (props: InputFieldProps) => {
                 aria-label={props.ariaLabel}
                 value={state ?? ''}
                 onChange={onChange}
+                onBlur={props.onBlur}
                 disabled={props.disabled || props.isLock}
                 style={{ border: canParseB ? '' : '4px solid #FF0000', borderRadius: canParseB ? '' : '1px' }}
             />
@@ -104,3 +99,33 @@ export const InputField = (props: InputFieldProps) => {
         </div>
     )
 }
+
+function canParseFloat(value: string | number) {
+    console.log("Validating float: " + value);
+    let canParseValue = true;
+    // validate that the string does not contains any caracter that is not a number
+    for (const element of value.toString()) {
+        if (Number.isNaN(Number.parseInt(element)) && element !== "." && element !== "-") {
+            canParseValue = false;
+            break;
+        }
+    }
+    return canParseValue;
+}
+
+function canParseNumber(value: string | number) {
+    console.log("Validating number: " + value);
+    let canParseValue = false;
+    if (value !== undefined) {
+        canParseValue = true;
+        // validate that the string does not contains any caracter that is not a number
+        for (const element of value.toString()) {
+            if (Number.isNaN(Number.parseInt(element)) && element !== "-") {
+                canParseValue = false;
+                break;
+            }
+        }
+    }
+    return canParseValue;
+}
+
