@@ -70,5 +70,12 @@
     "AddIncome": "Add income",
     "AddOutcome": "Add outcome",
 
-    "NumberOfMonths": "Number of months"
+    "NumberOfMonths": "Number of months",
+
+    "CostOfPropertyTooltip": "The total purchase price of the property.",
+    "ActualMortageAmountTooltip": "The current mortgage amount on the property.",
+    "CashDownTooltip": "The amount of money you pay upfront for the property.",
+    "CashDownPercentageTooltip": "The percentage of the property's cost that you pay upfront.",
+    "InterestRateTooltip": "The annual interest rate of the mortgage.",
+    "PaymentAmountTooltip": "The total amount of monthly mortgage payments."
 }

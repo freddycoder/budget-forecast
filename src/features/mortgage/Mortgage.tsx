@@ -42,8 +42,9 @@ export function Mortgage() {
               <InputField label={t('CostOfProperty')}
                 type='number'
                 ariaLabel={t('CostOfProperty')}
+                tooltip={t('CostOfPropertyTooltip')}
                 value={simulation.costOfProperty}
-                onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: parseInt(e.target.value), percentLock: percentLock}))}
+                onChange={(e) => dispatch(setCostOfProperty({ costOfProperty: Number.parseInt(e.target.value), percentLock: percentLock}))}
                 lockable={true}
                 onLock={(args) => switchLockMortage(args)}
                 symbol='$'
@@ -54,7 +55,8 @@ export function Mortgage() {
                 type='number'
                 ariaLabel={t('ActualMortageAmount')}
                 value={simulation.actualMortgageAmount}
-                onChange={(e) => dispatch(setActuelMortgageAmount({ actualMortgageAmount: parseInt(e.target.value), actualMortageIsLock: mortageAmountLock}))}
+                tooltip={t('ActualMortageAmountTooltip')}
+                onChange={(e) => dispatch(setActuelMortgageAmount({ actualMortgageAmount: Number.parseInt(e.target.value), actualMortageIsLock: mortageAmountLock}))}
                 lockable={true}
                 onLock={(args) => switchLockMortage(args)}
                 symbol='$'
@@ -65,8 +67,9 @@ export function Mortgage() {
               <InputField label={t('CashDown')}
                 type='number'
                 ariaLabel={t('CashDown')}
+                tooltip={t('CashDownTooltip')}
                 value={simulation.cashDown}
-                onChange={(e) => dispatch(setCashdown(parseInt(e.target.value)))}
+                onChange={(e) => dispatch(setCashdown(Number.parseInt(e.target.value)))}
                 lockable={true} 
                 onLock={(args) => switchLock(args)}
                 symbol='$'
@@ -76,8 +79,9 @@ export function Mortgage() {
               <InputField label={t('CashDownPercentage')}
                 type='number'
                 ariaLabel={t('CashDownPercentage')}
+                tooltip={t('CashDownPercentageTooltip')}
                 value={simulation.cashDownPercentage}
-                onChange={(e) => dispatch(setCashdownPercentage(parseInt(e.target.value)))}
+                onChange={(e) => dispatch(setCashdownPercentage(Number.parseInt(e.target.value)))}
                 lockable={true}
                 onLock={(args) => switchLock(args)}
                 symbol='%'
@@ -87,9 +91,10 @@ export function Mortgage() {
               <InputField label={t('InterestRate')}
                 type="float"
                 ariaLabel={t('InterestRate')}
+                tooltip={t('InterestRateTooltip')}
                 value={simulation.interestRate}
                 symbol='%'
-                onChange={(e) => dispatch(setInterestRate(parseFloat(e.target.value)))} />
+                onChange={(e) => dispatch(setInterestRate(Number.parseFloat(e.target.value)))} />
             </div>
             <div className={styles.row}>
               <InputField label={t('Term')}
@@ -97,11 +102,12 @@ export function Mortgage() {
                 tooltip={t('TermInformation')}
                 ariaLabel={t('Term')}
                 value={simulation.term}
-                onChange={(e) => dispatch(setTerm(parseInt(e.target.value)))} />
+                onChange={(e) => dispatch(setTerm(Number.parseInt(e.target.value)))} />
             </div>
             <div className={styles.row}>
               <InputField label={t('PaymentAmount')}
                 ariaLabel={t('PaymentAmount')}
+                tooltip={t('PaymentAmountTooltip')}
                 symbol='$'
                 value={format(simulation.paymentAmount)}
                 onChange={(e) => { return; }} 
@@ -130,7 +136,7 @@ export function Mortgage() {
               </thead>
               <tbody>
                 {simulation.paymentTable.map((payment, index) => (
-                  <tr key={index}>
+                  <tr key={'month_' + index}>
                     <td>{index + 1}</td>
                     <td>{format(payment.paymentAmount)} $</td>
                     <td>{format(payment.interest)} $</td>

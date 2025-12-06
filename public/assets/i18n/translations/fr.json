@@ -73,5 +73,12 @@
     "AddIncome": "Ajouter un revenu",
     "AddOutcome": "Ajouter une dépense",
 
-    "NumberOfMonths": "Nombre de mois"
+    "NumberOfMonths": "Nombre de mois",
+
+    "CostOfPropertyTooltip": "Le prix d'achat total de la propriété.",
+    "ActualMortageAmountTooltip": "Le montant actuel de l'hypothèque sur la propriété.",
+    "CashDownTooltip": "Le montant en dollars que vous payez à l'avance pour la propriété.",
+    "CashDownPercentageTooltip": "Le pourcentage du coût de la propriété que vous payez à l'avance.",
+    "InterestRateTooltip": "Le taux d'intérêt annuel de l'hypothèque.",
+    "PaymentAmountTooltip": "Le montant total des paiements hypothécaires mensuels."
 }
