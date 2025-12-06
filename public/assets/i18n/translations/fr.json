@@ -80,5 +80,8 @@
     "CashDownTooltip": "Le montant en dollars que vous payez à l'avance pour la propriété.",
     "CashDownPercentageTooltip": "Le pourcentage du coût de la propriété que vous payez à l'avance.",
     "InterestRateTooltip": "Le taux d'intérêt annuel de l'hypothèque.",
-    "PaymentAmountTooltip": "Le montant total des paiements hypothécaires mensuels."
+    "PaymentAmountTooltip": "Le montant total des paiements hypothécaires mensuels.",
+
+    "Frequency": "Fréquence",
+    "FrequencyTooltip": "La fréquence du paiement en mois. Par exemple, 12 signifie que le paiement est effectué tous les 12 mois (annuellement)."
 }

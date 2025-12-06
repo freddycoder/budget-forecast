@@ -146,11 +146,11 @@ export const simulationSlice = createSlice({
       state.simulationTable = generateSimulation(state)
     },
     addAdditionalOutcome: (state: SimulationState) => {
-      state.aditionnalOutcome.push({ amount: 0, description: "", frequency: 0, interest: 0, monthsDuration: 0 });
+      state.aditionnalOutcome.push({ amount: 0, description: "", frequency: 1, interest: 0, monthsDuration: 0 });
       state.simulationTable = generateSimulation(state);
     },
     addAdditionalIncome: (state: SimulationState) => {
-      state.aditionnalIncomes.push({ amount: 0, description: "", frequency: 0, interest: 0, monthsDuration: 0 });
+      state.aditionnalIncomes.push({ amount: 0, description: "", frequency: 1, interest: 0, monthsDuration: 0 });
       state.simulationTable = generateSimulation(state);
     },
     removeAdditionalIncome: (state: SimulationState, action: PayloadAction<number>) => {
@@ -201,6 +201,13 @@ export const simulationSlice = createSlice({
         state.simulationTable = generateSimulation(state);
       }
     },
+    updateAdditionalOutcomeFrequency: (state: SimulationState, action: PayloadAction<{ index: number; frequency: number }>) => {
+      const { index, frequency } = action.payload;
+      if (state.aditionnalOutcome[index]) {
+        state.aditionnalOutcome[index].frequency = frequency;
+        state.simulationTable = generateSimulation(state);
+      }
+    },
   },
 });
 
@@ -228,7 +235,8 @@ export const {
   updateAdditionalOutcomeAmount,
   updateAdditionalIncomeAmount,
   updateAdditionalIncomeMonthsDuration,
-  updateAdditionalOutcomeMonthsDuration
+  updateAdditionalOutcomeMonthsDuration,
+  updateAdditionalOutcomeFrequency,
 } = simulationSlice.actions;
 
 export const selectSimulation = (state: RootState) => state.simulation;

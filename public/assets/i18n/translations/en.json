@@ -77,5 +77,8 @@
     "CashDownTooltip": "The amount of money you pay upfront for the property.",
     "CashDownPercentageTooltip": "The percentage of the property's cost that you pay upfront.",
     "InterestRateTooltip": "The annual interest rate of the mortgage.",
-    "PaymentAmountTooltip": "The total amount of monthly mortgage payments."
+    "PaymentAmountTooltip": "The total amount of monthly mortgage payments.",
+
+    "Frequency": "Frequency",
+    "FrequencyTooltip": "The frequency of the payment, in months. For example, a value of 12 means the payment is made every 12 months (annually)."
 }

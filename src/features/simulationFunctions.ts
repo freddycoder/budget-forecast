@@ -40,8 +40,16 @@ function simulationIteration(mount: number, state: SimulationState, simulationTa
 
     let totalExpenses = state.expenses +
         (state.houseInsurance + (state.houseInsurance * (state.houseInsuranceTaxes / 100))) +
-        state.aditionnalOutcome.reduce((total, outcome) => mount < outcome.monthsDuration ? total + outcome.amount : total, 0) +
-        state.energyCost;
+        state.energyCost +
+        state.aditionnalOutcome.reduce((total, outcome) => {
+            if (mount < outcome.monthsDuration) {
+                if (mount % outcome.frequency === 0) {
+                    return total + outcome.amount;
+                }
+            }
+            
+            return total
+        }, 0);
 
     if (mount > 0 && mount % 12 === 0) {
         totalExpenses += state.municipalTaxes + state.scollarTaxes;

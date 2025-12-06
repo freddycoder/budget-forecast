@@ -13,7 +13,8 @@ import {
     removeAdditionalOutcome,
     updateAdditionalOutcomeDescription,
     updateAdditionalOutcomeAmount,
-    updateAdditionalOutcomeMonthsDuration } from "../simulationSlice";
+    updateAdditionalOutcomeMonthsDuration, 
+    updateAdditionalOutcomeFrequency} from "../simulationSlice";
 import styles from '../Simulation.module.css';
 
 export const Outcome = () => {
@@ -123,6 +124,14 @@ export const Outcome = () => {
                                     ariaLabel={t('NumberOfMonths')}
                                     value={income.monthsDuration}
                                     onChange={(e) => { dispatch(updateAdditionalOutcomeMonthsDuration({ index, monthsDuration: Number.parseInt(e.target.value) })) }}
+                                />
+                                <InputField
+                                    type="number"
+                                    label={t('Frequency')}
+                                    ariaLabel={t('Frequency')}
+                                    value={income.frequency}
+                                    onChange={(e => { dispatch(updateAdditionalOutcomeFrequency({ index, frequency: Number.parseInt(e.target.value )}))})}
+                                    tooltip={t('FrequencyTooltip')}
                                 />
                                 <button 
                                     className={`${styles.button} ${styles['button-danger']}`} 
