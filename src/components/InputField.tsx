@@ -24,8 +24,8 @@ export const InputField = (props: InputFieldProps) => {
         if (props.type === "number") {
             try {
                 console.log("Parsing number: " + event.target.value);
-                const value = parseInt(event.target.value);
-                if (!isNaN(value) && props.onChange != null) {
+                const value = Number.parseInt(event.target.value);
+                if (!Number.isNaN(value) && props.onChange != null) {
                     props.onChange(event);
                 }
             }
@@ -39,40 +39,45 @@ export const InputField = (props: InputFieldProps) => {
 
     const canParse = (value: string | number) => {
         console.log("Can parse: " + value);
-        let canParseBool = false;
+        let canParseValue = false;
         if (props.type === "number") {
-            canParseBool = true;
-            // validate that the string does not contains any caracter that is not a number
-            for (let i = 0; i < value.toString().length; i++) {
-                if (isNaN(parseInt(value.toString()[i])) && value.toString()[i] !== "-") {
-                    canParseBool = false;
-                    break;
-                }
-                else {
-                    canParseBool = true;
+            console.log("Validating number: " + value);
+            if (value !== undefined) {
+                canParseValue = true;
+                // validate that the string does not contains any caracter that is not a number
+                for (let i = 0; i < value.toString().length; i++) {
+                    if (isNaN(Number.parseInt(value.toString()[i])) && value.toString()[i] !== "-") {
+                        canParseValue = false;
+                        break;
+                    }
+                    else {
+                        canParseValue = true;
+                    }
                 }
             }
         }
         else if (props.type === "float") {
-            canParseBool = true;
+            console.log("Validating float: " + value);
+            canParseValue = true;
             // validate that the string does not contains any caracter that is not a number
             for (let i = 0; i < value.toString().length; i++) {
                 if (isNaN(parseInt(value.toString()[i])) && value.toString()[i] !== "." && value.toString()[i] !== "-") {
-                    canParseBool = false;
+                    canParseValue = false;
                     break;
                 }
                 else {
-                    canParseBool = true;
+                    canParseValue = true;
                 }
             }
         }
         else {
-            canParseBool = true;
+            console.log("else: can parse = true ");
+            canParseValue = true;
         }
 
-        console.log("Can parse: " + value + " " + canParseBool);
+        console.log("Can parse: " + value + " " + canParseValue);
 
-        return canParseBool;
+        return canParseValue;
     }
 
     const canParseB = canParse(state);
@@ -92,10 +97,10 @@ export const InputField = (props: InputFieldProps) => {
             />
             {props.symbol && <span className={styles.symbol}>{props.symbol}</span>}
 
-            {props.lockable && 
-                <input type="checkbox" 
-                       onChange={(args) => props.isLock && props.onLock !== undefined ? props.onLock(args) : undefined} 
-                       checked={!props.isLock}></input>}
+            {props.lockable &&
+                <input type="checkbox"
+                    onChange={(args) => props.isLock && props.onLock !== undefined ? props.onLock(args) : undefined}
+                    checked={!props.isLock}></input>}
         </div>
     )
 }

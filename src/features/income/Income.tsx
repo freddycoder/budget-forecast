@@ -8,7 +8,8 @@ import {
     addAdditionalIncome, 
     removeAdditionalIncome,
     updateAdditionalIncomeDescription,
-    updateAdditionalIncomeAmount
+    updateAdditionalIncomeAmount,
+    updateAdditionalIncomeMonthsDuration
 } from "../simulationSlice";
 import styles from '../Simulation.module.css';
 
@@ -27,7 +28,7 @@ export const Income = () => {
                         label={t('Revenue')}
                         ariaLabel={t('Revenue')}
                         value={simulation.income}
-                        onChange={(e) => { dispatch(setIncome(parseInt(e.target.value))) }}
+                        onChange={(e) => { dispatch(setIncome(Number.parseInt(e.target.value))) }}
                         tooltip={t('RevenueTooltip')}
                         symbol="$"
                         ></InputField>
@@ -38,7 +39,7 @@ export const Income = () => {
                         label={t('InitialValue')}
                         ariaLabel={t('InitialValue')}
                         value={simulation.initialValue}
-                        onChange={(e) => { dispatch(setInitialValue(parseInt(e.target.value))) }}
+                        onChange={(e) => { dispatch(setInitialValue(Number.parseInt(e.target.value))) }}
                         tooltip={t('InitialValueTooltip')}
                         symbol="$"
                         ></InputField>
@@ -52,7 +53,7 @@ export const Income = () => {
                 <div className={styles.row}>
                     <ol>
                         {simulation.aditionnalIncomes.map((income, index) => {
-                            return <li key={index}>
+                            return <li key={income.description + index}>
                                 <InputField
                                     type="text"
                                     label={t('Description')}
@@ -65,9 +66,16 @@ export const Income = () => {
                                     label={t('Amount')}
                                     ariaLabel={t('Amount')}
                                     value={income.amount}
-                                    onChange={(e) => { dispatch(updateAdditionalIncomeAmount({ index: index, amount: parseInt(e.target.value) })) }}
+                                    onChange={(e) => { dispatch(updateAdditionalIncomeAmount({ index: index, amount: Number.parseInt(e.target.value) })) }}
                                     symbol="$"
                                 ></InputField>
+                                <InputField
+                                    type="number"
+                                    label={t('NumberOfMonths')}
+                                    ariaLabel={t('NumberOfMonths')}
+                                    value={income.monthsDuration}
+                                    onChange={(e) => { dispatch(updateAdditionalIncomeMonthsDuration({ index: index, monthsDuration: Number.parseInt(e.target.value) })) }}
+                                />
                                 <button 
                                     className={`${styles.button} ${styles['button-danger']}`} 
                                     onClick={() => { dispatch(removeAdditionalIncome(index)) }}>{t('Remove')}</button></li>

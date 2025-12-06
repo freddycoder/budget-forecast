@@ -68,5 +68,7 @@
     "InitialValueTooltip": "Initial value is the amount of money that you have at the beginning of the simulation.",
 
     "AddIncome": "Add income",
-    "AddOutcome": "Add outcome"
+    "AddOutcome": "Add outcome",
+
+    "NumberOfMonths": "Number of months"
 }

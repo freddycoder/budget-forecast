@@ -3,4 +3,5 @@ export interface AdditionnalIncome {
     description: string;
     frequency: number;
     interest: number;
+    monthsDuration: number;
 }

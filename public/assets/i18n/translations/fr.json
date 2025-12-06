@@ -71,5 +71,7 @@
     "InitialValueTooltip": "Montant d'argent initial disponible dans vos comptes.",
 
     "AddIncome": "Ajouter un revenu",
-    "AddOutcome": "Ajouter une dépense"
+    "AddOutcome": "Ajouter une dépense",
+
+    "NumberOfMonths": "Nombre de mois"
 }
