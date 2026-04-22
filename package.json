@@ -20,7 +20,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "i18next": "^25.8.0",
     "i18next-browser-languagedetector": "^8.2.0",
-    "i18next-http-backend": "^3.0.2",
+    "i18next-http-backend": "^3.0.5",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-google-charts": "^5.2.1",
