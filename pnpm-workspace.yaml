@@ -1,2 +1,6 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - i18next-http-backend@4.0.2
 onlyBuiltDependencies:
   - esbuild
